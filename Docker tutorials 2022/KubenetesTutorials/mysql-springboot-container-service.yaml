@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose -f docker-compose.dev.yml convert
+    kompose.version: 1.26.1 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mysql-springboot-container
+  name: mysql-springboot-container
+spec:
+  ports:
+    - name: "3310"
+      port: 3310
+      targetPort: 3306
+  selector:
+    io.kompose.service: mysql-springboot-container
+status:
+  loadBalancer: {}

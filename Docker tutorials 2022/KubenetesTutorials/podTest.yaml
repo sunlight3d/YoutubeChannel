@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-test
+#specifications  
+spec:
+  containers:
+  - name: alpine-test-container  
+    image: alpine:3.15.2
+    command: ["ls", "-la"] 

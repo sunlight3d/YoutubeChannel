@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose -f docker-compose.dev.yml convert
+    kompose.version: 1.26.1 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: springboot-docker-container
+  name: springboot-docker-container
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: springboot-docker-container
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose -f docker-compose.dev.yml convert
+        kompose.version: 1.26.1 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/springboot-app-network: "true"
+        io.kompose.service: springboot-docker-container
+    spec:
+      containers:
+        - image: sunlight4d/springboot-docker:v1.0.0
+          name: springboot-docker-container
+          ports:
+            - containerPort: 8083
+          resources: {}
+          volumeMounts:
+            - mountPath: /app
+              name: springboot-docker-container-claim0
+      restartPolicy: Always
+      volumes:
+        - name: springboot-docker-container-claim0
+          persistentVolumeClaim:
+            claimName: springboot-docker-container-claim0
+status: {}

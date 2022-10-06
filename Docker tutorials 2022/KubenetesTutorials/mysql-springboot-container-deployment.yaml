@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose -f docker-compose.dev.yml convert
+    kompose.version: 1.26.1 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mysql-springboot-container
+  name: mysql-springboot-container
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mysql-springboot-container
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose -f docker-compose.dev.yml convert
+        kompose.version: 1.26.1 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/springboot-app-network: "true"
+        io.kompose.service: mysql-springboot-container
+    spec:
+      containers:
+        - env:
+            - name: MYSQL_DATABASE
+              value: StudentManagement
+            - name: MYSQL_PASSWORD
+              value: Abc@123456789
+            - name: MYSQL_ROOT_PASSWORD
+              value: Abc@123456789
+            - name: MYSQL_USER
+              value: hoangnd
+          image: mysql:8.0.28
+          name: mysql-springboot-container
+          ports:
+            - containerPort: 3306
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: mysql-springboot-data
+            - mountPath: /etc/mysql/conf.d
+              name: mysql-springboot-config-deamond
+      restartPolicy: Always
+      volumes:
+        - name: mysql-springboot-data
+          persistentVolumeClaim:
+            claimName: mysql-springboot-data
+        - name: mysql-springboot-config-deamond
+          persistentVolumeClaim:
+            claimName: mysql-springboot-config-deamond
+status: {}

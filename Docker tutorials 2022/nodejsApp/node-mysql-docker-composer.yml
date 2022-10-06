@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  node-mysql-container:
+    image: sunlight4d/node-mysql-image:v1.0.1
+    container_name: node-mysql-container
+    command: sh -c "yarn install && yarn run:dev"
+    ports:
+      - 8002:8000
+    working_dir: /app  
+    volumes:
+      - ./:/app
+    networks:
+      - backend
+    environment:
+      MYSQL_HOST: todo-app-network-alias
+      MYSQL_USER: root
+      MYSQL_PASSWORD: Abc@123456789
+      MYSQL_DB: todoDB
+  mysql-container:
+    image: mysql
+    container_name: mysql-container    
+    ports:
+      - 3308:3306    
+    volumes:
+      - todo-mysql-database:/var/lib/mysql
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: Abc@123456789
+      MYSQL_DATABASE: todoDB      
+networks:
+  backend:
+    name: todo-app-network     
+volumes:
+  todo-mysql-database:

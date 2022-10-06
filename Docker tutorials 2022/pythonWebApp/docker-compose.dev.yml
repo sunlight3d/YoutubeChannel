@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  python-flask-app-container:
+    image: sunlight4d/python-flask-app:v1.0.0
+    container_name: python-flask-app-container
+    ports:
+      - 5002:5000
+    volumes:
+      - ./:/app
+    networks:
+      - mysql-python-app-network
+  
+  mysql-flask-app-container:
+    image: mysql:8.0.28
+    container_name: mysql-flask-app-container
+    ports:
+      - 3309:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=Abc@123456789
+    volumes:
+      - mysql-python-app-volume:/var/lib/mysql
+      - mysql-python-app-volume-config:/etc/mysql
+    networks:
+      - mysql-python-app-network
+
+networks:
+  mysql-python-app-network:
+    name: mysql-python-app-network
+volumes:
+  mysql-python-app-volume:
+  mysql-python-app-volume-config:
