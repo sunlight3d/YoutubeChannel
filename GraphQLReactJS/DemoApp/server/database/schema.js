@@ -1,28 +1,30 @@
-import {customers, projects} from './fakeData'
-import {GraphQLID, GraphQLObjectType, GraphQLSchema} from 'graphql'
-
+const {customers, projects}  = require('./fakeData')
+const {GraphQLObjectType, GraphQLSchema, GraphQLString, GraphQLID} = require('graphql')
 const Customer = new GraphQLObjectType({
     name: 'Customer',
-    fields: () => ({
-        customerId: { type: GraphQLID },
+    fields:() => ({
+        customerId: {type: GraphQLID, required: true},
         customerName: { type: GraphQLString },
         email: { type: GraphQLString },
         address: { type: GraphQLString },
         country: { type: GraphQLString },
     })
 })
+
 const CustomerQuery = new GraphQLObjectType({
     name: 'CustomerQuery',
     fields: {
         customer: {
             type: Customer,//return type of this query
             args: {id: { type: GraphQLID}}, //arguments
-            resolve(parent, args) {
-                return customers.find(eachCustomer => eachCustomer.id === args.id)
+            resolve(parent, args) {                
+                const foundCustomer = customers.find(customer => customer.customerId == args.id)
+                console.log(`foundCustomer: ${JSON.stringify(foundCustomer)}`)
+                return foundCustomer
             }
        } 
     }
 })
-export default new GraphQLSchema({
+module.exports = new GraphQLSchema({
     query: CustomerQuery
 })

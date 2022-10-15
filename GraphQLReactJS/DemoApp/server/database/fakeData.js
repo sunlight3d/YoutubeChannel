@@ -46,7 +46,7 @@ const projects = [
         status: "do not start yet"
     },
 ]
-export default {
+module.exports = {
     customers, 
     projects
 }
