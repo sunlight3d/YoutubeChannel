@@ -6,4 +6,6 @@ module com.javafxdemo.javafxdemo {
 
     opens com.javafxdemo.javafxdemo to javafx.fxml;
     exports com.javafxdemo.javafxdemo;
+    exports com.javafxdemo.javafxdemo.controllers;
+    opens com.javafxdemo.javafxdemo.controllers to javafx.fxml;
 }
