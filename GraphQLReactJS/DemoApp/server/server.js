@@ -9,7 +9,7 @@ require('dotenv').config()
 const connectMongoDB = require('./mongodb/mongodb')
 connectMongoDB()
 
-const PORT = process.env.PORT || 5000
+const PORT = airocess.env.PORT || 5000
 //middleware
 app.use('/graphql', graphqlHTTP({
     schema: graphqlSchema,
