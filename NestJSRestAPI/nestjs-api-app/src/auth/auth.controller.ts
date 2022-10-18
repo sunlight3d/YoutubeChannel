@@ -8,14 +8,14 @@ export class AuthController {
         
     }    
     @Post("register",) //register a new user          
-    register(@Body() body: AuthDTO) {        
-        //not validate using class-validator AND class-transformer
-        return this.authService.register();
+    register(@Body() authDTO: AuthDTO) {        
+        //not validate using class-validator AND class-transformer        
+        return this.authService.register(authDTO);
     }
     //POST: .../auth/login
     @Post("login") 
-    login() {
-        return this.authService.login();
+    login(@Body() authDTO: AuthDTO) {
+        return this.authService.login(authDTO);
     }
 }
 //export = "make public"
