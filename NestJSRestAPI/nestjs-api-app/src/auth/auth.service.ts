@@ -3,10 +3,16 @@ import {User, Note} from '@prisma/client'
 import { PrismaService } from "../prisma/prisma.service";
 import { AuthDTO } from "./dto";
 import * as argon from 'argon2';
+import {JwtService} from '@nestjs/jwt'
+import { ConfigService } from "@nestjs/config";
 
 @Injectable({})//this is "Dependency Injection"
 export class AuthService {
-    constructor(private prismaService: PrismaService){
+    constructor(
+        private prismaService: PrismaService,
+        private jwtService: JwtService,
+        private configService: ConfigService
+    ){
         
     }
     async register(authDTO: AuthDTO){        
@@ -28,7 +34,7 @@ export class AuthService {
                     createdAt: true
                 }
             })
-            return user
+            return await this.signJwtToken(user.id, user.email)
         }catch(error) {            
             if(error.code == 'P2002') {
                 //throw new ForbiddenException(error.message)
@@ -63,9 +69,22 @@ export class AuthService {
                 'Incorrect password'
             )
         }        
-        delete user.hashedPassword //remove 1 field in the object
-        //it doesn't affect to the Database
-        return user
-        //This is the basic authentication
+        delete user.hashedPassword //remove 1 field in the object        
+        return await this.signJwtToken(user.id, user.email)        
+    }
+    //now convert to an object, not string
+    async signJwtToken(userId: number, email: string)
+        :Promise<{accessToken: string}>{
+        const payload = {
+            sub: userId,
+            email
+        }
+        const jwtString = await this.jwtService.signAsync(payload, {
+            expiresIn: '10m',
+            secret: this.configService.get('JWT_SECRET')
+        })
+        return {
+            accessToken: jwtString,
+        }
     }
 }
