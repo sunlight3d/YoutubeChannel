@@ -26,18 +26,19 @@ export class NoteController {
     insertNote(
         @GetUser('id') userId: number,
         @Body() insertNoteDTO: InsertNoteDTO
-    ){       
-        console.log('insertNote')
-        console.log(`userId: ${userId}, 
-            insertNoteDTO: ${JSON.stringify(insertNoteDTO)}`)
+    ){               
         return this.noteService.insertNote(userId, insertNoteDTO)
     }
-    @Patch()
+    @Patch(":id")
     updateNoteById(
-        @Param('id', ParseIntPipe) noteId: number, //validate noteId is "number"
+        //,ParseIntPipe
+        //@Param('id') noteId: number, //validate noteId is "number"
+        @Param() aa:any,
         @Body() updateNoteDTO: UpdateNoteDTO
     ) {
-        return this.noteService.updateNoteById(noteId, updateNoteDTO)
+        console.log(JSON.stringify(aa))
+        // console.log(`noteId111 = ${noteId}`);
+        // return this.noteService.updateNoteById(noteId, updateNoteDTO)
     }
     @Delete()
     deleteNoteById(@Param('id', ParseIntPipe) noteId: number){

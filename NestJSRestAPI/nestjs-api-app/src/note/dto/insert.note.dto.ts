@@ -6,8 +6,8 @@ export class InsertNoteDTO {
     title: string
 
     @IsString()
-    @IsOptional()
-    description?: string
+    @IsNotEmpty()
+    description: string
     
     @IsString()
     @IsNotEmpty()
