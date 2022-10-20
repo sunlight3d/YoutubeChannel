@@ -98,18 +98,7 @@ describe('App EndToEnd tests', () => {
                 .expectStatus(200)
                 //.inspect()                
         })
-      })  
-      describe('Update/Edit User', () => {
-        it('should update user', () => {
-          return pactum.spec()
-                .patch('/users/me')    //PATCH Method
-                .withHeaders({
-                  Authorization: 'Bearer $S{accessToken}',
-                })             
-                .expectStatus(200)
-                .inspect()                
-        })
-      })    
+      })        
     })
     describe('Note', () => {
       describe('Insert Note', () => {
