@@ -84,6 +84,45 @@ describe('App EndToEnd tests', () => {
               })
               .expectStatus(201)
               //.inspect()
+              .stores('accessToken', "accessToken")
+      })
+    })
+    describe('User', () => {
+      describe('Get Detail User', () => {
+        it('should get detail user', () => {
+          return pactum.spec()
+                .get('/users/me')   
+                .withHeaders({
+                  Authorization: 'Bearer $S{accessToken}',
+                })             
+                .expectStatus(200)
+                //.inspect()                
+        })
+      })  
+      describe('Update/Edit User', () => {
+        it('should update user', () => {
+          return pactum.spec()
+                .patch('/users/me')    //PATCH Method
+                .withHeaders({
+                  Authorization: 'Bearer $S{accessToken}',
+                })             
+                .expectStatus(200)
+                .inspect()                
+        })
+      })    
+    })
+    describe('Note', () => {
+      describe('Insert Note', () => {
+
+      })
+      describe('Get all Notes', () => {
+        
+      })
+      describe('Get Note by Id', () => {
+        
+      })
+      describe('Delete Note by Id', () => {
+        
       })
     })
   })
