@@ -26,7 +26,10 @@ export class NoteController {
     insertNote(
         @GetUser('id') userId: number,
         @Body() insertNoteDTO: InsertNoteDTO
-    ){
+    ){       
+        console.log('insertNote')
+        console.log(`userId: ${userId}, 
+            insertNoteDTO: ${JSON.stringify(insertNoteDTO)}`)
         return this.noteService.insertNote(userId, insertNoteDTO)
     }
     @Patch()
