@@ -96,19 +96,60 @@ describe('App EndToEnd tests', () => {
                   Authorization: 'Bearer $S{accessToken}',
                 })             
                 .expectStatus(200)
+                .stores('userId', 'id')
                 //.inspect()                
         })
       })        
     })
     describe('Note', () => {
       describe('Insert Note', () => {
-
+        it('insert first note', () => {
+          return pactum.spec()
+                .post('/notes')   
+                .withHeaders({
+                  Authorization: 'Bearer $S{accessToken}',
+                })             
+                .expectStatus(201)
+                .stores('nodeId01', 'id')
+                //.inspect()                
+        })
+        it('insert second note', () => {
+          return pactum.spec()
+                .post('/notes')   
+                .withHeaders({
+                  Authorization: 'Bearer $S{accessToken}',
+                })             
+                .expectStatus(201)
+                .stores('nodeId02', 'id')
+                //.inspect()                
+        })
+        it('insert third note', () => {
+          return pactum.spec()
+                .post('/notes')   
+                .withHeaders({
+                  Authorization: 'Bearer $S{accessToken}',
+                })             
+                .expectStatus(201)
+                .stores('nodeId03', 'id')
+                //.inspect()                
+        })
       })
       describe('Get all Notes', () => {
-        
+        return pactum.spec()
+                .get('/notes')   
+                .withHeaders({
+                  Authorization: 'Bearer $S{accessToken}',
+                })             
+                .expectStatus(200)                                
+                //.inspect()                
       })
       describe('Get Note by Id', () => {
-        
+        return pactum.spec()
+                .get('/notes')   
+                .withHeaders({
+                  Authorization: 'Bearer $S{accessToken}',
+                })             
+                .expectStatus(200)                                
       })
       describe('Delete Note by Id', () => {
         

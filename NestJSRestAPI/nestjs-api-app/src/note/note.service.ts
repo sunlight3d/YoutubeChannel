@@ -53,7 +53,20 @@ export class NoteService {
             }
         })
     }
-    deleteNoteById(noteId: number){
-
+    async deleteNoteById(noteId: number){
+        const note = await this.prismaService.note
+            .findUnique({
+                where: {
+                    id: noteId
+                }
+            })
+        if(!note) {
+            throw new ForbiddenException('Cannot find Note to delete')
+        }
+        return this.prismaService.note.delete({
+            where: {
+                id: noteId
+            }
+        })
     }
 }

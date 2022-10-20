@@ -1,7 +1,7 @@
 import { 
     Body, Controller, 
     Get, Patch, Req, UseGuards,
-    Post, Delete, Param 
+    Post, Delete, Param, Query, HttpStatus, HttpCode, 
 } from '@nestjs/common'
 import { GetUser } from '../auth/decorator'
 import { MyJwtGuard } from '../auth/guard'
@@ -30,19 +30,18 @@ export class NoteController {
         return this.noteService.insertNote(userId, insertNoteDTO)
     }
     @Patch(":id")
-    updateNoteById(
-        //,ParseIntPipe
-        //@Param('id') noteId: number, //validate noteId is "number"
-        @Param() aa:any,
+    updateNoteById(        
+        @Param('id',ParseIntPipe) noteId: number, //validate noteId is "number"        
         @Body() updateNoteDTO: UpdateNoteDTO
-    ) {
-        console.log(JSON.stringify(aa))
-        // console.log(`noteId111 = ${noteId}`);
-        // return this.noteService.updateNoteById(noteId, updateNoteDTO)
+    ) {                
+        return this.noteService.updateNoteById(noteId, updateNoteDTO)
     }
-    @Delete()
-    deleteNoteById(@Param('id', ParseIntPipe) noteId: number){
-        return this.deleteNoteById(noteId)
+    
+    @HttpCode(HttpStatus.NO_CONTENT)
+    @Delete()    
+    deleteNoteById(@Query('id', ParseIntPipe) noteId: number){
+        console.log(`noteId1aaa = ${noteId}`);
+        return this.noteService.deleteNoteById(noteId)
     }
     //Now we test this API using POSTMAN first !
 }
