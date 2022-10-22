@@ -39,10 +39,9 @@ export class NoteController {
     
     @HttpCode(HttpStatus.NO_CONTENT)
     @Delete()    
-    deleteNoteById(@Query('id', ParseIntPipe) noteId: number){
-        console.log(`noteId1aaa = ${noteId}`);
+    deleteNoteById(@Query('id', ParseIntPipe) noteId: number){        
         return this.noteService.deleteNoteById(noteId)
     }
-    //Now we test this API using POSTMAN first !
+    //now go back to TEST
 }
 
