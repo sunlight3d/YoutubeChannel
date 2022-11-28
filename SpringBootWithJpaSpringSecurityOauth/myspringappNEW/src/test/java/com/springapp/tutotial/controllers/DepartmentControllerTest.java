@@ -2,7 +2,6 @@ package com.springapp.tutotial.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import com.springapp.tutotial.models.Department;
 import com.springapp.tutotial.services.DepartmentService;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,8 +13,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 @WebMvcTest(DepartmentController.class)
@@ -25,7 +27,6 @@ class DepartmentControllerTest {
     @MockBean
     private DepartmentService departmentService;
 
-    //private Department department;
 
     @BeforeEach
     void setUp() {
@@ -33,11 +34,9 @@ class DepartmentControllerTest {
     }
     private String toJSONString(Object object) {
         try {
-//            return new ObjectMapper()
-//                    //.withDefaultPrettyPrinter()
-//                    .writeValueAsString(object);
-            Gson gson = new Gson();
-            return gson.toJson(Department.class);
+            return new ObjectMapper().writer()
+                    .withDefaultPrettyPrinter()
+                    .writeValueAsString(object);
         } catch (Exception e) {
             System.out.println("Cannot convert to json string"+e.getMessage());
             return "";
@@ -45,27 +44,20 @@ class DepartmentControllerTest {
     }
     @Test
     void insertDepartment() throws Exception {
-        Department updatedDepartment = Department.builder()
-                .name("Sales")
-                .address("somewhere")
-                .departmentId(1L)
+        Department newDepartment = Department.builder()
+                .name("IT")
+                .address("Hoan Kiem, Hanoi, Vietnam")
+                .departmentId(2L)
                 .build();
-        mockMvc.perform(MockMvcRequestBuilders.post("/departments")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\n" +
-                        "    \"name\": \"Sales\", \n" +
-                        "    \"address\": \"Bachmai street, Hanoi\"\n" +
-                        "}")
+        mockMvc.perform(post("/departments")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(toJSONString(newDepartment))
                 )
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(status().isOk());
     }
 
     @Test
     void getDepartments() {
-    }
-
-    @Test
-    void getDepartmentById() {
     }
 
     @Test

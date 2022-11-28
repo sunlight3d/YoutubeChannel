@@ -21,7 +21,7 @@ public class Department {
             nullable = false)
     private long departmentId;
     @NotBlank(message = "You must enter department's name")
-    @Length(max = 100, min = 3)
+    @Length(max = 100, min = 2)
     private String name;//findByName
     private String address;//findByAddress
 
