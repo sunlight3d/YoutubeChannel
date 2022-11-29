@@ -1,0 +1,15 @@
+#search "application to yaml"
+spring:
+  datasource:
+    username: root
+    url: jdbc:mysql://localhost:3310/mydb
+    driverClassName: com.mysql.cj.jdbc.Driver
+    password: Abc123456789
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+server:
+  port: 8088
+welcome:
+  message: Welcome to my App

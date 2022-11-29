@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  oracledb:
+    image: container-registry.oracle.com/database/standard:latest
+    container_name: oracle-standard-container 
+    shm_size: '8gb'
+    restart: unless-stopped
+    ports:
+      - 1522:1521      
+    env_file:
+      - oracle_db_env.dat
+
+    volumes:
+      - ./db:/opt/oracle/oradata
