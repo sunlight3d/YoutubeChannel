@@ -1,12 +1,13 @@
 # docker-compose version
 # docker-compose -f ./mysql-compose.yml down
 # docker-compose -f ./mysql-compose.yml up -d
-# docker exec -it mysql-javaspring-tutorials mysql -p
+# docker exec -it mysql-javaspring-dev mysql -p
+# docker exec -it mysql-javaspring-test mysql -p
 version: '3.8'
 services:
-  db:
+  mysql-javaspring-dev:
     image: mysql:8.0.31
-    container_name: mysql-javaspring-tutorials
+    container_name: mysql-javaspring-dev
     restart: always
     environment:
       MYSQL_DATABASE: mydb
@@ -14,8 +15,23 @@ services:
     ports:
       - 3310:3306
     volumes:
-      - db:/var/lib/mysql
+      - dev-db:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  mysql-javaspring-test:
+    image: mysql:8.0.31
+    container_name: mysql-javaspring-test
+    restart: always
+    environment:
+      MYSQL_DATABASE: mytestdb
+      MYSQL_ROOT_PASSWORD: Abc123456789
+    ports:
+      - 3311:3306
+    volumes:
+      - test-db:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
 volumes:
-  db:
+  dev-db:
+    driver: local
+  test-db:
     driver: local
