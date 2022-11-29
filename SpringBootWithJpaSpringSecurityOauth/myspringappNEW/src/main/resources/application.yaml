@@ -4,7 +4,12 @@ server:
 
 ---
 spring:
-  profile: dev
+  profiles:
+    active: test
+
+---
+spring:
+  profiles: dev
   datasource:
     username: root
     url: jdbc:mysql://localhost:3310/mydb
@@ -19,7 +24,7 @@ welcome:
 
 ---
 spring:
-  profile: test
+  profiles: test
   datasource:
     username: root
     url: jdbc:mysql://localhost:3311/mytestdb
