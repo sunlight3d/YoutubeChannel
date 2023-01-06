@@ -7,7 +7,8 @@ mvn clean install
 Open Maven tab(right), Lifecycle, click clean, click install
 Output jar files in target/
 packages all dependencies mentioned in the pom file => jar.original
-java -jar target/tutotial-0.0.1-SNAPSHOT.jar --spring.profiles.active=test
+java -jar target/tutotial-0.0.1-SNAPSHOT.jar --spring.profiles.active=test`
+Access :8082/actuator
 * */
 @SpringBootApplication
 public class Main {

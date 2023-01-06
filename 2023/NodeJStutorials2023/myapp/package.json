@@ -1,0 +1,32 @@
+{
+  "name": "NodeJStutorials2023",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "This is a tutorial",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "debug": "node inspect server.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "test:debug": "NODE_OPTIONS=--experimental-vm-modules node inspect node_modules/jest/bin/jest.js"
+  },
+  "author": "Nguyen Duc Hoang",
+  "license": "MIT",
+  "dependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "bcrypt": "^5.1.0",
+    "chalk": "^5.2.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.8.1",
+    "nodemon": "^2.0.20",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.5",
+    "jest": "^29.3.1",
+    "ts-jest": "^29.0.3"
+  }
+}
