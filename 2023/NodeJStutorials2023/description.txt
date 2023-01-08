@@ -1,0 +1,36 @@
+Bài này chia sẻ với các bạn về kiến thức NodeJS, Express, MongoDB gồm các nội dung sao
+1:47 - Cài đặt và tạo dự án NodeJS trên Windows 11
+7:39 - Cài đặt và tạo dự án NodeJS trên MacOS Ventura
+12:30 - Tạo project mới trong NodeJS
+17:58 - Hàm và module trong Javascript
+25:27 - Làm việc với thư viện ExpressJS
+30:48 - Biến môi trường với file .env
+36:33 - Xử lý Request/Response trong Express
+38:12 - Sử dụng nodemon để không phải chạy lại code mỗi lần thay đổi
+39:10 - Tùy biến Router trong Express
+44:52 - Test các Request với Postman
+53:37 - Debug các request và kiểm tra các tham số truyền đến NodeJS App
+1:03:37 - Viết request Login, gửi tham số qua Request Body
+1:07:37 - Validate các thông tin đầu vào với Express Validator
+1:12:00 - Controllers và cách tổ chức Controllers trong dự án NodeJS
+1:29:03 - Trả về dữ liệu dạng JSON kèm HTTP Status Code
+1:36:40 - Tổ chức các Repositories để lấy dữ liệu dưới Database
+1:58:20 - Sử dụng Event Emitter trong Nodejs
+2:02:53 - MongoDB và kết nối với NodeJS
+2:48:51 - Xử lý error và tạo class Exception riêng
+2:56:30 - Giới thiệu về ORM, Model và validate Model trong Mongoose
+3:08:02 - Viết request đăng ký người dùng - Register
+3:15:59 - Mã hóa mật khẩu với bcrypt
+3:36:36 - Xây dựng Request đăng nhập User, lưu dữ liệu vào MongoDb
+3:44:49 - Giới thiệu về JWT - Json Web Token
+3:51:33 - Cài đặt Json Web Token và tích hợp vào dự án Nodejs
+4:01:01 - Thêm Authentication Middleware có JWT
+4:12:30 - Thêm JWT vào header, validate JWT cho các Request
+4:30:07 - Hoàn thiện chức năng insert Student
+4:52:28 - Sử dụng thư viện Faker để seeding data
+5:20:00 - Chức năng Paging(phân trang), kèm Filter(lọc) danh sách sinh viên dài
+5:40:18 - Chức năng lấy thông tin chi tiết 1 Student
+5:29:57 - Chức năng cập nhật thông tin student
+
+Link code bài học:
+https://github.com/sunlight3d/YoutubeChannel/tree/master/2023/NodeJStutorials2023
