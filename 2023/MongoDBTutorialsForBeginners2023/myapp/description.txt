@@ -1,0 +1,26 @@
+Video này dành cho các bạn mới làm quen với cơ sở dữ liệu NoSQL - MongoDB
+3:09 - Cài đặt MongoDB Server Community trên Windows 11
+10:56 - Cài đặt MongoDB Server sử dụng Docker Composer
+35:41 - Kết nối MongoDB sử dụng Studio 3T và mongosh
+45:09 - Thêm mới document vào collection với insertOne
+51:00 - Tạo collection và Schema Validation
+1:07:13 - Chỉnh sửa(update) Schema Validation
+1:10:29 - Kết nối vào bash shell của MongoDB Container, kết nối DB với mongosh
+1:11:45 - Lấy dữ liệu sample của MongoDB với mongorestore
+1:14:26 - Một số lệnh cơ bản trên MongoDB với sample_mflix 
+1:29:04 - Lệnh find, sort, sử dụng $in
+1:34:21 - Làm việc với calculated fields, limit, skip, paging
+1:40:00 - Làm việc với Aggregate Pipeline trong MongoDB
+1:45:30 - Lọc dữ liệu với $match và aggregate
+1:52:30 - Join quan hệ với thực thể khác sử dụng $lookup
+1:54:57 - Tìm kiếm sử dụng biểu thức chính quy - Regular Expression
+2:01:23 - Thêm trường mới vào stage với $addField
+2:10:40 - Cập nhật và xóa bản ghi
+
+
+
+
+
+
+
+
