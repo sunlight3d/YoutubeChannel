@@ -603,7 +603,8 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
-
+videos
+.videos
 # Pyre type checker
 .pyre/
 
