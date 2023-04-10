@@ -7,12 +7,12 @@ Xác thực và ủy quyền người dùng
 Cung cấp JWT tokens cho các dịch vụ khác
 Redis là một cơ sở dữ liệu bộ nhớ nhanh chóng và nhẹ nhàng, phù hợp để lưu trữ session người dùng và JWT tokens với thời gian sống ngắn.
 
-
 User Service (Python và Flask, PostgreSQL):
 Quản lý thông tin người dùng
 Quản lý hồ sơ, địa chỉ giao hàng và lịch sử mua hàng
 
-Product Catalog Service (Java và Spring Boot, Elasticsearch):
+
+Code Product Catalog Service (Java và Spring Boot, Elasticsearch):
 Quản lý thông tin sản phẩm
 Quản lý danh mục sản phẩm
 Tìm kiếm sản phẩm
