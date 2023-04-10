@@ -13,3 +13,5 @@ CREATE TABLE users (
     refresh_token TEXT, -- mã làm mới
     registration_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP -- ngày đăng ký
 );
+
+
