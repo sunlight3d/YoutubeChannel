@@ -5,6 +5,7 @@ import com.example.productcatalog.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.query.Query;
 import org.springframework.web.bind.annotation.*;
 

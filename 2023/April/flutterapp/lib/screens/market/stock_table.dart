@@ -17,7 +17,7 @@ class _StockTableState extends State<StockTable> {
       _overlayEntry?.remove();
     } else {
       _overlayEntry = _createPopupOverlay();
-      Overlay.of(context)?.insert(_overlayEntry!);
+      Overlay.of(context).insert(_overlayEntry!);
     }
     _isPopupVisible = !_isPopupVisible;
   }
@@ -175,7 +175,7 @@ class ChildWidget extends StatelessWidget {
             ),
             onTap: () {
               onPressItem(data[index]);
-              togglePopup!();
+              togglePopup();
             },
           );
         },

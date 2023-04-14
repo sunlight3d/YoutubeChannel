@@ -18,6 +18,7 @@ Quản lý danh mục sản phẩm
 Tìm kiếm sản phẩm
 Elasticsearch hỗ trợ tìm kiếm dữ liệu nhanh chóng và chính xác, giúp cải thiện trải nghiệm người dùng khi tìm kiếm sản phẩm và danh mục.
 
+Hãy thiết kế DB và viết code cho microservice:
 Inventory Service (Ruby và Ruby on Rails, MySQL):
 Theo dõi số lượng hàng tồn kho
 Quản lý nhập hàng

@@ -1,0 +1,30 @@
+version: '3.9'
+
+# Nếu bạn có nhiều tệp docker-compose.yml khác nhau, 
+# trong đó các dịch vụ (services) có cùng tên,NO PROBLEM !, 
+# Docker Compose sẽ tự động tạo ra một namespace cho mỗi dự án
+
+services:
+  sqlserver: 
+    image: mcr.microsoft.com/mssql/server:2022-latest 
+    container_name: stock_app_db
+    environment: 
+      #Environment variables
+      - ACCEPT_EULA=Y #Accept End-User License Agreement
+      - SA_PASSWORD=Abc123456789@
+    ports: #Port mapping from container to host
+      - "1434:1433"
+    volumes: #Mapping data directory from container to host(laptop, PC)       
+      - ./db_data:/var/opt/mssql/data
+      - ./sql_init:/docker-entrypoint-initdb.d #sql_init contains SQL scripts
+    restart: always
+    mem_limit: 2g # Memory limit for the container
+    memswap_limit: 3g     
+volumes:
+  db_data:
+# Nếu hai tệp Docker Compose cấu hình đều sử dụng cùng một tên volume, 
+#thì cả hai sẽ chia sẻ cùng một volume được lưu trữ trên máy chủ Docker. 
+# => cả hai Docker Compose sẽ có quyền truy cập vào cùng một dữ liệu được lưu trữ trong volume đó  
+
+#docker-compose --file ./docker-compose.yml up --detach
+#docker-compose ps

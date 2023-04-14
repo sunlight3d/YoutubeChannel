@@ -1,0 +1,31 @@
+digraph UserDevices {
+	users [label=users fillcolor=lightblue shape=record style=filled]
+	user_id [label="<user_id> user_id (PK)" shape=record]
+	username [label="<username> username" shape=record]
+	hashed_password [label="<hashed_password> hashed_password" shape=record]
+	email [label="<email> email" shape=record]
+	phone [label="<phone> phone" shape=record]
+	full_name [label="<full_name> full_name" shape=record]
+	date_of_birth [label="<date_of_birth> date_of_birth" shape=record]
+	country [label="<country> country" shape=record]
+	user_devices [label=user_devices fillcolor=lightblue shape=record style=filled]
+	id [label="<id> id (PK)" shape=record]
+	user_id_fk [label="<user_id_fk> user_id (FK)" shape=record]
+	device_id [label="<device_id> device_id" shape=record]
+	token [label="<token> token" shape=record]
+	token_expiration [label="<token_expiration> token_expiration" shape=record]
+	users -> user_id
+	users -> username
+	users -> hashed_password
+	users -> email
+	users -> phone
+	users -> full_name
+	users -> date_of_birth
+	users -> country
+	user_devices -> id
+	user_devices -> user_id_fk
+	user_devices -> device_id
+	user_devices -> token
+	user_devices -> token_expiration
+	user_id_fk -> user_id [constraint=true]
+}

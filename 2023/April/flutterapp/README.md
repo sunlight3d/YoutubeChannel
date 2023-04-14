@@ -108,6 +108,46 @@ In setting screen, we have a text:"Dark mode", then an on/off switcher
 When I set the dark mode to ON, all screens of my app become "dark"
 How can I implement this in Flutter ?
 
-- 
+git clone https://github.com/flutter/flutter.git -b stable 
+
+Viết code màn hình đăng nhập như sau:
+- Logo ở phía trên, căn giữa màn hình
+- TextField có nền trắng, icon căn trái,cho nhập customer id, bên phải là biểu tượng x, cho phép clear text 
+- TextField có nền trắng, icon căn trái,cho nhập customer id, bên phải là biểu tượng eye, bấm vào show/hide password
+-Dưới textfield là Text "Forgot password", bấm vào sẽ hiện ra màn hình Forgot Password(màn hình di chuyển từ dưới lên trên) 
+
+
+
+
+app, goi webview
+websocket, 50/ 50
+Giong smartinvest
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
