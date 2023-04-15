@@ -1,4 +1,4 @@
-USE UserManagementAPI;
+USE StockApp;
 EXEC RegisterUser 'nguyenhuy', 'password_1', 'nguyenhuy@example.com', '0123456789', 'Nguyễn Văn Huy', '1990-01-01', 'Việt Nam';
 EXEC RegisterUser 'tranphuong', 'password_2', 'tranphuong@example.com', '0987654321', 'Trần Thị Phương', '1992-02-15', 'Việt Nam';
 EXEC RegisterUser 'leminh', 'password_3', 'leminh@example.com', '0123412345', 'Lê Văn Minh', '1985-05-30', 'Việt Nam';
@@ -375,7 +375,7 @@ INSERT INTO educational_resources (title, content, category, date_published) VAL
 ('Phương pháp đầu tư giá trị', 'Bài viết này giải thích phương pháp đầu tư giá trị và cách sử dụng nó để tìm kiếm các cổ phiếu định giá thấp nhưng có tiềm năng tăng trưởng dài hạn. Bạn sẽ học được các công cụ và chỉ số đầu vào để tìm kiếm cổ phiếu giá trị.', 'Đầu tư', '2022-05-11'),
 ('10 điều cần lưu ý khi đầu tư cổ phiếu', '1. Tìm hiểu kỹ về công ty trước khi đầu tư. 2. Đặt mục tiêu đầu tư rõ ràng. 3. Phân bổ tài sản đúng cách. 4. Tránh mua cổ phiếu quá đắt. 5. Tránh đầu tư vào những công ty lỗ. 6. Theo dõi tình hình kinh doanh của công ty thường xuyên. 7. Không nên quá tập trung vào một số cổ phiếu. 8. Nắm rõ thông tin về thị trường và các yếu tố ảnh hưởng đến giá cổ phiếu. 9. Cân nhắc giữ cổ phiếu trong thời gian dài. 10. Sử dụng kỹ thuật stop loss để giảm thiểu rủi ro.', 'Đầu tư', '2022-05-11 09:45:00'),
 ('Làm thế nào để phân bổ tài sản đúng cách', 'Phân bổ tài sản đúng cách là một trong những yếu tố quan trọng nhất trong việc quản lý đầu tư. Theo các chuyên gia, việc phân bổ tài sản nên dựa trên độ tuổi, mục đích đầu tư, trình độ kiến thức và mức độ chấp nhận rủi ro của mỗi người. Để phân bổ tài sản đúng cách, bạn nên chia tài sản thành các khoản đầu tư khác nhau như tiền mặt, cổ phiếu, trái phiếu và vàng. Ngoài ra, việc chia tài sản thành nhiều khoản nhỏ hơn cũng giúp giảm thiểu rủi ro.', 'Quản lý rủi ro', '2022-05-13 14:20:00'),
-('5 chiến lược giao dịch hiệu quả', '1. Giao dịch theo xu hướng. 2. Giao dịch theo tin tức. 3. Giao dịch theo động lực giá. 4. Giao dịch theo mô hình kỹ thuật. 5. Sử dụng chỉ báo kỹ thuật. Việc sử dụng các chiến lược giao dịch này giúp bạn giảm thiểu rủi ro và tăng tỷ lệ thành công trong giao dịch.', 'Chiến lược giao dịch', '2022-05-15 10:00:00'),
+('5 chiến lược giao dịch hiệu quả', '1. Giao dịch theo xu hướng. 2. Giao dịch theo tin tức. 3. Giao dịch theo động lực giá. 4. Giao dịch theo mô hình kỹ thuật. 5. Sử dụng chỉ báo kỹ thuật. Việc sử dụng các chiến lược giao dịch này giúp bạn giảm thiểu rủi ro và tăng tỷ lệ thành công trong giao dịch.', 'Chiến lược giao dịch', '2022-05-15 10:00:00');
 
 INSERT INTO linked_bank_accounts (user_id, bank_name, account_number, routing_number, account_type) VALUES
 (1, 'Vietcombank', '1234567890', '12345678', 'checking'),

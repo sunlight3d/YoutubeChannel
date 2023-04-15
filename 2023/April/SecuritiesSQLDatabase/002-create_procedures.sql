@@ -24,7 +24,7 @@ END;
 CREATE PROCEDURE LoginUser
     @login NVARCHAR(255),
     @password NVARCHAR(255),
-    @device_id NVARCHAR(255)
+    @device_id NVARCHAR(255) 
 AS
 BEGIN
     DECLARE @user_id INT;
@@ -34,7 +34,7 @@ BEGIN
 
     SELECT @user_id = user_id
     FROM users
-    WHERE (username = @login OR email = @login) AND hashed_password = @hashed_password;
+    WHERE email = @login AND hashed_password = @hashed_password;
 
     IF @user_id IS NOT NULL
     BEGIN
@@ -80,34 +80,41 @@ BEGIN
 END;
 
 CREATE TRIGGER order_trigger
-AFTER INSERT ON orders
-FOR EACH ROW
+ON orders
+AFTER INSERT
+AS
 BEGIN
-  DECLARE stock_quantity INT;
-  DECLARE transaction_amount DECIMAL(10,2);
+    DECLARE @stock_quantity INT
+    DECLARE @transaction_amount DECIMAL(10,2)
 
-  -- Get the stock quantity and transaction amount based on order type
-  IF NEW.order_type = 'buy' THEN
-    SET stock_quantity = NEW.quantity;
-    SET transaction_amount = NEW.quantity * NEW.price;
-  ELSE
-    SET stock_quantity = -NEW.quantity;
-    SET transaction_amount = -NEW.quantity * NEW.price;
-  END IF;
+    -- Get the stock quantity and transaction amount based on order type
+    IF EXISTS (SELECT * FROM inserted WHERE order_type = 'buy')
+    BEGIN
+        SELECT @stock_quantity = inserted.quantity,
+               @transaction_amount = inserted.quantity * inserted.price
+        FROM inserted
+    END
+    ELSE
+    BEGIN
+        SELECT @stock_quantity = -inserted.quantity,
+               @transaction_amount = -inserted.quantity * inserted.price
+        FROM inserted
+    END
 
-  -- Update the user's portfolio
-  UPDATE portfolios
-  SET quantity = quantity + stock_quantity
-  WHERE user_id = NEW.user_id AND symbol = NEW.symbol;
+    -- Update the user's portfolio
+    UPDATE portfolios
+    SET quantity = quantity + @stock_quantity
+    WHERE user_id = (SELECT user_id FROM inserted) AND stock_id = (SELECT stock_id FROM inserted);
 
-  -- Create a new notification
-  INSERT INTO notifications (user_id, message)
-  VALUES (NEW.user_id, CONCAT('Order ', NEW.order_id, ' has been ', NEW.status));
+    -- Create a new notification
+    INSERT INTO notifications (user_id, notification_type, content)
+    VALUES ((SELECT user_id FROM inserted), 'order', CONCAT('Order ', (SELECT order_id FROM inserted), ' has been ', (SELECT status FROM inserted)));
 
-  -- Add a new transaction record
-  INSERT INTO transactions (user_id, order_id, amount, type)
-  VALUES (NEW.user_id, NEW.order_id, transaction_amount, NEW.order_type);
-END;
+    -- Add a new transaction record
+    INSERT INTO transactions (user_id, order_id, amount, transaction_type)
+    VALUES ((SELECT user_id FROM inserted), (SELECT order_id FROM inserted), @transaction_amount, (SELECT order_type FROM inserted));
+END
+
 
 -- Tính tổng số lượng cổ phiếu của một người dùng trong danh mục đầu tư
 CREATE FUNCTION fn_GetTotalSharesInPortfolio
