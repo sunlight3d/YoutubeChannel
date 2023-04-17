@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/screens/home/home.dart';
+import 'package:flutterapp/screens/login/login.dart';
 import 'package:flutterapp/screens/settings/settings.dart';
+import 'package:flutterapp/screens/splash/splash.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
   runApp(MyApp());
 }
 
@@ -15,7 +21,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: SplashScreen(),
+      //home: HomeScreen(),
       //home: SettingsScreen()
     );
   }

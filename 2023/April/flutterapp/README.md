@@ -118,10 +118,13 @@ Viết code màn hình đăng nhập như sau:
 
 
 
+Viết cho tôi nội dung khóa học: "Lập trình mobile với Flutter" gồm 10 buổi(bằng tiếng Việt).Yêu cầu sau khi học xong, học viên có thể xây dựng được ứng dụng chứng khoán. Các học viên đã có trình độ cơ bản về lập trình
+Yêu cầu nội dung mỗi buổi ít nhất 5 gạch đầu dòng
 
 app, goi webview
 websocket, 50/ 50
 Giong smartinvest
+
 
 
 
