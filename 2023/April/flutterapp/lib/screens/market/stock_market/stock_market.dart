@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutterapp/models/quote_realtime.dart';
 import 'package:flutterapp/services/quote_service.dart';
-import 'package:flutterapp/services/websocket_connection.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:web_socket_channel/status.dart' as status;
+
 
 import 'child_widget.dart';
 
@@ -13,33 +17,38 @@ class StockMarketScreen extends StatefulWidget {
 }
 
 class _StockMarketScreenState extends State<StockMarketScreen> {
-  final QuoteService _quoteService = QuoteService.getInstance();
   List<QuoteRealtime> data = [
     // Add more fake data here
   ];
   OverlayEntry? _overlayEntry;
   bool _isPopupVisible = false;
+
+  int page = 1;
+  int pageSize = 10;
+  String sector = "";
+  String industry = "";
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _connectToSignalR();
-  }
-  @override
-  void dispose() {
-    _disconnectFromSignalR();
-    super.dispose();
-  }
-  void _connectToSignalR() async {
-    await _quoteService.connect();
-    _quoteService.subscribeToStocksRealTime(_onDataReceived);
-  }
-  void _disconnectFromSignalR() async {
-    await _quoteService.disconnect();
-  }
+    final message = {
+      "type": "subscribe",
+      "page": page,
+      "pageSize": pageSize,
+      "sector": sector,
+      "industry": industry,
+    };
+    final messageJson = json.encode(message);
+    var channel = WebSocketChannel.connect(Uri.parse(QuoteService.wsUrlGetQuotes));
+    channel.sink.add(messageJson);
+    channel.stream.listen((data) {
+      debugPrint('haha');
+      final parsedData = json.decode(data);
+      // if (onData != null) {
+      //   onData(parsedData);
+      // }
 
-  void _onDataReceived(dynamic data) {
-    setState(() {
       // _quotes = List<Map<String, dynamic>>.from(data)
       //     .map((quote) => {
       //   'symbol': quote['symbol'],
@@ -48,8 +57,15 @@ class _StockMarketScreenState extends State<StockMarketScreen> {
       // })
       //     .toList();
       //this.data = data;
+
+      //channel.sink.close(status.goingAway);
     });
   }
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   void _togglePopup() {
     if (_isPopupVisible) {
       _overlayEntry?.remove();
