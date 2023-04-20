@@ -1,28 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/models/quote_realtime.dart';
-import 'package:flutterapp/screens/market/stock_market/stock_market.dart';
-import 'package:infinite_scroll_tab_view/infinite_scroll_tab_view.dart';
 
-import 'stock_market/child_widget.dart';
+import 'child_widget.dart';
 
-
-class MarketScreen extends StatefulWidget {
-  const MarketScreen({Key? key}) : super(key: key);
+class StockMarketScreen extends StatefulWidget {
+  const StockMarketScreen({Key? key}) : super(key: key);
 
   @override
-  _MarketScreenState createState() => _MarketScreenState();
+  _StockMarketScreenState createState() => _StockMarketScreenState();
 }
 
-class _MarketScreenState extends State<MarketScreen> {
-  final List<String> categories = [
-    'Stock Market',
-    'Industry',
-    'Index',
-    'Derivatives',
-    'Cover Warrants',
-    'ETF',
-    'Top Stock',
-  ];
+class _StockMarketScreenState extends State<StockMarketScreen> {
 
   List<QuoteRealtime> data = [
     // Add more fake data here
@@ -88,28 +76,61 @@ class _MarketScreenState extends State<MarketScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    return Expanded(child: InfiniteScrollTabView(
-      contentLength: categories.length,
-      onTabTap: (index) {
-        debugPrint('tapped $index');
-      },
-      tabBuilder: (index, isSelected) => Text(
-        categories[index],
-        style: TextStyle(
-          color: isSelected ? Colors.pink : Colors.black54,
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
+    return Column(
+      children: [
+        InkWell(
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.blueAccent),
+                borderRadius: BorderRadius.all(Radius.circular(5))
+            ),
+            child: Row(
+              children: [
+                SizedBox(width: 10,),
+                Expanded(child: Text('This is Stock Market'),),
+                IconButton(
+                  icon: const Icon(Icons.arrow_drop_down), onPressed: () {  },
+                )
+              ],
+            ),
+          ),
+          onTap: () {
+            _togglePopup();
+          },
         ),
-      ),
-      separator: const BorderSide(color: Colors.black12, width: 2.0),
-      onPageChanged: (index) => debugPrint('page changed to $index.'),
-      indicatorColor: Colors.pink,
-      pageBuilder: (context, index, _) {
-        if(index == 0) {
-          return StockMarketScreen();
-        }
-        return Text('aa');
-      },
-    ));
+        Expanded(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: DataTable(
+                columns: [
+                  DataColumn(label: Text('Symbol')),
+                  DataColumn(label: Text('Price')),
+                  DataColumn(label: Text('+/-')),
+                  DataColumn(label: Text('+/- %')),
+                  DataColumn(label: Text('TotalVol')),
+                ],
+                rows: data.map((item) {
+                  return DataRow(cells: [
+                    DataCell(Text(item.symbol)),
+                    DataCell(Text('${item.price}')),
+                    DataCell(Text('${item.change}')),
+                    DataCell(Text('${item.percentChange}')),
+                    DataCell(Text('${item.volume}')),
+                  ]);
+                }).toList(),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 16),
+        Text(
+          'Table Footer Text',
+          textAlign: TextAlign.center,
+        ),
+      ],
+    );
   }
 }
