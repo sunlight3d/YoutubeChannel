@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/models/quote_realtime.dart';
+import 'package:flutterapp/services/quote_service.dart';
+import 'package:flutterapp/services/websocket_connection.dart';
 
 import 'child_widget.dart';
 
@@ -11,12 +13,43 @@ class StockMarketScreen extends StatefulWidget {
 }
 
 class _StockMarketScreenState extends State<StockMarketScreen> {
-
+  final QuoteService _quoteService = QuoteService.getInstance();
   List<QuoteRealtime> data = [
     // Add more fake data here
   ];
   OverlayEntry? _overlayEntry;
   bool _isPopupVisible = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _connectToSignalR();
+  }
+  @override
+  void dispose() {
+    _disconnectFromSignalR();
+    super.dispose();
+  }
+  void _connectToSignalR() async {
+    await _quoteService.connect();
+    _quoteService.subscribeToStocksRealTime(_onDataReceived);
+  }
+  void _disconnectFromSignalR() async {
+    await _quoteService.disconnect();
+  }
+
+  void _onDataReceived(dynamic data) {
+    setState(() {
+      // _quotes = List<Map<String, dynamic>>.from(data)
+      //     .map((quote) => {
+      //   'symbol': quote['symbol'],
+      //   'company_name': quote['company_name'],
+      //   'price': quote['price'],
+      // })
+      //     .toList();
+      //this.data = data;
+    });
+  }
   void _togglePopup() {
     if (_isPopupVisible) {
       _overlayEntry?.remove();
