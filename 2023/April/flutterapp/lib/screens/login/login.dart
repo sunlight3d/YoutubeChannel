@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/services/user_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 /*
 Viết code màn hình đăng nhập như sau:
@@ -24,6 +25,20 @@ class _LoginScreenState extends State<LoginScreen> {
   String _password = '';
   bool _showPassword = false;
 
+  void _login() async {
+    try {
+      UserService userService = UserService();
+      String token = await userService.login(_customerID, _password, 'device123');
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('isLoggedIn', true);
+      await prefs.setString('token', token);
+      // Chuyển đến màn hình tiếp theo sau khi đăng nhập thành công
+      // Ví dụ: Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+    } catch (e) {
+      print('Error: $e');
+      // Hiển thị thông báo lỗi cho người dùng
+    }
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -91,10 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       ElevatedButton(
                         child: Text('Login'),
-                        onPressed: () async {
-                          SharedPreferences prefs = await SharedPreferences.getInstance();
-                          await prefs.setBool('isLoggedIn', true);
-                        },
+                        onPressed: _login,
                       ),
                       IconButton(
                         icon: Icon(Icons.fingerprint),
