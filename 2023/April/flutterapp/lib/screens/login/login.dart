@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/services/user_service.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 /*
 Viết code màn hình đăng nhập như sau:
@@ -27,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _login() async {
     try {
-      UserService userService = UserService();
+      UserService userService = Provider.of<UserService>(context, listen: false);
       String token = await userService.login(_customerID, _password, 'device123');
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setBool('isLoggedIn', true);
