@@ -75,13 +75,19 @@ CREATE TABLE market_indices (
 --association table
 CREATE TABLE index_constituents (
     index_id INT FOREIGN KEY REFERENCES market_indices(index_id),
-    stock_id INT FOREIGN KEY REFERENCES stocks(stock_id)
+    stock_id INT
 );
 GO
+
+ALTER TABLE index_constituents
+ADD CONSTRAINT FK_IndexConstituents_Stocks
+FOREIGN KEY (stock_id)
+REFERENCES stocks (stock_id);
+
 CREATE TABLE derivatives (
     derivative_id INT PRIMARY KEY IDENTITY, -- ID của chứng khoán phái sinh
     name NVARCHAR(255) NOT NULL, -- Tên của chứng khoán phái sinh
-    underlying_asset_id INT FOREIGN KEY REFERENCES stocks(stock_id), -- ID của tài sản cơ bản mà chứng khoán phái sinh được dựa trên
+    underlying_asset_id INT, -- ID của tài sản cơ bản mà chứng khoán phái sinh được dựa trên
     contract_size INT, -- Kích thước hợp đồng (số lượng tài sản cơ bản trong một hợp đồng phái sinh)
     --Contract size khác nhau cho từng sản phẩm tài chính, 
     --ví dụ như trong thị trường forex, contract size được tính theo số lượng lot, 
@@ -102,6 +108,11 @@ CREATE TABLE derivatives (
     open_interest INT NOT NULL,
     time_stamp DATETIME NOT NULL
 );
+ALTER TABLE derivatives
+ADD CONSTRAINT FK_Derivatives_Stocks
+FOREIGN KEY (underlying_asset_id)
+REFERENCES stocks (stock_id);
+
 -- covered warrants được bảo đảm bởi một bên thứ ba, 
 -- thường là một ngân hàng hoặc một công ty chuyên cung cấp dịch vụ này
 CREATE TABLE covered_warrants (
@@ -113,6 +124,12 @@ CREATE TABLE covered_warrants (
     strike_price DECIMAL(18, 4), -- Giá thực hiện (giá mà người mua của chứng quyền có bảo đảm có quyền mua/bán tài sản cơ bản)
     warrant_type NVARCHAR(50) -- Loại chứng quyền có bảo đảm (ví dụ: mua (Call) hoặc bán (Put))
 );
+
+ALTER TABLE covered_warrants
+ADD CONSTRAINT FK_CovedWarrants_Stocks
+FOREIGN KEY (underlying_asset_id)
+REFERENCES stocks (stock_id);
+
 CREATE TABLE etfs (
     etf_id INT PRIMARY KEY IDENTITY, -- ID của Quỹ Đầu Tư Chứng Khoán (ETF)
     name NVARCHAR(255) NOT NULL, -- Tên của Quỹ Đầu Tư Chứng Khoán (ETF)
@@ -176,11 +193,17 @@ CREATE TABLE orders (
 -- Portfolios table (Bảng danh mục đầu tư)
 CREATE TABLE portfolios (
     user_id INT FOREIGN KEY REFERENCES users(user_id), -- ID người dùng
-    stock_id INT FOREIGN KEY REFERENCES stocks(stock_id), -- ID cổ phiếu
+    stock_id INT, -- ID cổ phiếu
     quantity INT, -- Số lượng
     purchase_price DECIMAL(18, 4), -- Giá mua
     purchase_date DATETIME -- Ngày mua
 );
+
+ALTER TABLE portfolios
+ADD CONSTRAINT FK_Portfolios_Stocks
+FOREIGN KEY (stock_id)
+REFERENCES stocks (stock_id);
+
 /*
 Thông báo:
 order_executed: Thông báo khi một đơn hàng mua hoặc bán chứng khoán đã được thực hiện thành công hoặc thất bại.
@@ -598,5 +621,27 @@ WHERE warrant_type = 'Put';
 
 --Đây chỉ là fake data, phục vụ việc học SQL Server
 --TRUNCATE TABLE etfs;
+--SELECT * FROM etfs;
 
-SELECT * FROM etfs;
+--SELECT * FROM stocks;
+TRUNCATE TABLE stocks;
+
+SELECT name, OBJECT_NAME(parent_object_id) AS table_name
+FROM sys.foreign_keys
+WHERE referenced_object_id = OBJECT_ID('stocks')
+
+ALTER TABLE quotes
+DROP CONSTRAINT FK__quotes__stock_id__44FF419A;
+
+/*
+
+ALTER TABLE orders
+DROP CONSTRAINT FK__orders__stock_id__5DCAEF64;
+
+ALTER TABLE portfolios
+DROP CONSTRAINT FK__portfolio__stock__619B8048;
+*/
+TRUNCATE TABLE stocks;
+SELECT * FROM stocks WHERE stock_type='etf' AND sector_en='food';
+
+SELECT * FROM stocks WHERE company_name LIKE '%group%' AND market_cap > 900000000;

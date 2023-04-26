@@ -1,6 +1,4 @@
 from faker import Faker
-from googletrans import Translator
-import pyodbc
 import random
 import string
 
@@ -9,7 +7,6 @@ from database import Database
 db = Database()
 # Tạo đối tượng faker
 fake = Faker()
-translator = Translator()
 
 # Tạo danh sách các mã cổ phiếu đã được sử dụng
 used_symbols = set()
