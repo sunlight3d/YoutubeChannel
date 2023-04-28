@@ -19,10 +19,10 @@ class Database:
                                         database_name=self.database_name,
                                         username=self.username,
                                         password=self.password
-                                    )
-    
+                                    )    
         self.conn = pyodbc.connect(self.connection_string)
-        self.cursor = self.conn.cursor()
+        self.cursor = self.conn.cursor()    
+
 
     def execute_query(self, query, params):
         self.cursor.execute(query, params)

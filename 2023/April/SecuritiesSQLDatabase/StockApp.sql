@@ -163,6 +163,11 @@ CREATE TABLE watchlists (
     user_id INT FOREIGN KEY REFERENCES users(user_id), -- ID người dùng
     stock_id INT FOREIGN KEY REFERENCES stocks(stock_id) -- ID cổ phiếu
 );
+
+ALTER TABLE watchlists 
+ADD CONSTRAINT unique_WatchlistEntry UNIQUE(user_id, stock_id);
+
+SELECT * FROM users;
 -- Orders table (Bảng đơn hàng / đặt lệnh)
 /*
 Market order: Lệnh mua/bán thực hiện ngay lập tức với giá thị trường hiện tại. 
@@ -190,6 +195,7 @@ CREATE TABLE orders (
     status NVARCHAR(20), -- Trạng thái (ví dụ: pending, executed, canceled)
     order_date DATETIME -- Ngày đặt hàng
 );
+
 -- Portfolios table (Bảng danh mục đầu tư)
 CREATE TABLE portfolios (
     user_id INT FOREIGN KEY REFERENCES users(user_id), -- ID người dùng
@@ -633,15 +639,201 @@ WHERE referenced_object_id = OBJECT_ID('stocks')
 ALTER TABLE quotes
 DROP CONSTRAINT FK__quotes__stock_id__44FF419A;
 
-/*
-
-ALTER TABLE orders
-DROP CONSTRAINT FK__orders__stock_id__5DCAEF64;
-
-ALTER TABLE portfolios
-DROP CONSTRAINT FK__portfolio__stock__619B8048;
-*/
 TRUNCATE TABLE stocks;
 SELECT * FROM stocks WHERE stock_type='etf' AND sector_en='food';
 
 SELECT * FROM stocks WHERE company_name LIKE '%group%' AND market_cap > 900000000;
+
+SELECT * FROM etf_holdings;
+
+SELECT * FROM watchlists;
+
+TRUNCATE TABLE orders;
+SELECT count(*) FROM orders;
+
+SELECT count(*) FROM orders;
+SELECT * FROM users;
+
+---Start here
+TRUNCATE TABLE portfolios;
+SELECT * FROM portfolios;
+
+INSERT INTO educational_resources (title, content, category, date_published) VALUES
+(N'Phân tích kỹ thuật cơ bản', N'Bài viết này trình bày những khái niệm cơ bản của phân tích kỹ thuật, nhưng cũng cung cấp một số kiến thức nâng cao. Nếu bạn mới bắt đầu học phân tích kỹ thuật, đây là một bài viết tuyệt vời để bắt đầu.', N'Phân tích kỹ thuật', '2022-01-01'),
+(N'Bảo vệ tài khoản giao dịch của bạn', N'Bài viết này cung cấp một số lời khuyên để giúp bạn bảo vệ tài khoản giao dịch của mình, đảm bảo rằng bạn không bao giờ mất hết số tiền đầu tư của mình trong một lần.', N'Quản lý rủi ro', '2022-02-15'),
+(N'Hướng dẫn đầu tư vào thị trường chứng khoán', N'Bài viết này cung cấp một số lời khuyên cơ bản để bắt đầu đầu tư vào thị trường chứng khoán, bao gồm việc lựa chọn cổ phiếu, phân tích cơ bản và kỹ thuật, và quản lý rủi ro.', N'Đầu tư', '2022-03-10'),
+(N'Kỹ năng quản lý rủi ro cho nhà đầu tư', N'Bài viết này trình bày những kỹ năng cơ bản để quản lý rủi ro khi đầu tư vào thị trường chứng khoán, bao gồm cách đánh giá rủi ro và quản lý tỷ lệ rủi ro / lợi nhuận.', N'Quản lý rủi ro', '2022-04-22'),
+(N'Phương pháp đầu tư giá trị', N'Bài viết này giải thích phương pháp đầu tư giá trị và cách sử dụng nó để tìm kiếm các cổ phiếu định giá thấp nhưng có tiềm năng tăng trưởng dài hạn. Bạn sẽ học được các công cụ và chỉ số đầu vào để tìm kiếm cổ phiếu giá trị.', N'Đầu tư', '2022-05-11');
+GO
+
+SELECT * FROM educational_resources;
+SELECT * FROM linked_bank_accounts;
+
+-- Tạo dữ liệu fake cho bảng linked_bank_accounts
+INSERT INTO linked_bank_accounts (user_id, bank_name, account_number, routing_number, account_type)
+VALUES
+(2, 'ABC Bank', CONCAT('ACCT-', NEWID()), '234567890', 'savings'),
+(5, 'JKL Bank', CONCAT('ACCT-', NEWID()), '567890123', 'checking'),
+(6, 'MNO Bank', CONCAT('ACCT-', NEWID()), '678901234', 'savings'),
+(7, 'PQR Bank', CONCAT('ACCT-', NEWID()), '789012345', 'checking'),
+(8, 'STU Bank', CONCAT('ACCT-', NEWID()), '890123456', 'savings'),
+(9, 'VWX Bank', CONCAT('ACCT-', NEWID()), '901234567', 'checking'),
+(10, 'YZA Bank', CONCAT('ACCT-', NEWID()), '012345678', 'savings'),
+(11, 'BAN Bank', CONCAT('ACCT-', NEWID()), '123456789', 'checking'),
+(12, 'KOF Bank', CONCAT('ACCT-', NEWID()), '234567890', 'savings'),
+(13, 'KFC Bank', CONCAT('ACCT-', NEWID()), '345678901', 'checking');
+
+SELECT * from users order by user_id;
+
+SELECT * FROM transactions;
+
+SET IDENTITY_INSERT users ON;
+/*
+INSERT INTO users (user_id, username, hashed_password, email, phone, full_name, date_of_birth, country)
+VALUES (1, 'phananh', HASHBYTES('SHA2_256', 'password_1'), 'phananh@example.com', '0912314548', N'Nguyễn Phan Anh', '1993-03-04', N'Việt Nam');
+
+INSERT INTO users (user_id, username, hashed_password, email, phone, full_name, date_of_birth, country)
+VALUES (3, 'tranhieu', HASHBYTES('SHA2_256', 'password_1'), 'tranhieu@example.com', '0912398748', N'Trần Văn Hiếu', '1994-03-04', N'Việt Nam');
+
+INSERT INTO users (user_id, username, hashed_password, email, phone, full_name, date_of_birth, country)
+VALUES (4, 'lehang', HASHBYTES('SHA2_256', 'password_1'), 'lehang@example.com', '0934514548', N'Lệ Hằng', '1995-03-04', N'Việt Nam');
+*/
+SELECT COLUMN_NAME
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'users';
+
+SELECT * FROM orders;
+SELECT * FROM portfolios;
+SELECT * FROM notifications;
+SELECT * FROM transactions;
+GO
+/*
+Viết một trigger sau khi thêm dữ liệu vào bảng orders: 
+-insert hoặc update dữ liệu stock_id và quantity vào bảng portfolios
+-insert dữ liệu vào bảng notifications
+-insert dữ liệu vào bảng transactions
+Nếu orders.direction là "buy" thì transaction_type là "withdrawal"
+Nếu orders.direction là "sell" thì transaction_type là "deposit"
+Đây là cấu trúc cụ thể của các bảng:
+orders(order_id,user_id,stock_id,order_type,direction,quantity,price,status,order_date)
+portfolios(user_id,stock_id,quantity,purchase_price,purchase_date)
+notifications(notification_id,user_id,notification_type,content,is_read,created_at)
+transactions(transaction_id,user_id,linked_account_id,transaction_type,amount,transaction_date)
+*/
+DROP TRIGGER trigger_orders; 
+GO
+
+CREATE TRIGGER trigger_orders
+ON orders
+AFTER INSERT
+AS
+BEGIN
+    -- Declare variables to store values
+    DECLARE @user_id INT
+    DECLARE @stock_id INT
+    DECLARE @quantity INT
+    DECLARE @purchase_price DECIMAL(10, 2)
+    DECLARE @purchase_date DATETIME
+    DECLARE @notification_type NVARCHAR(50)
+    DECLARE @notification_content NVARCHAR(255)
+    DECLARE @transaction_type NVARCHAR(50)
+    DECLARE @transaction_amount DECIMAL(10, 2)
+    DECLARE @transaction_date DATETIME
+    
+    DECLARE @order_id INT
+    DECLARE @order_status NVARCHAR(20)
+    DECLARE @direction NVARCHAR(20)
+
+    -- Get the user_id, stock_id, quantity, and price from inserted table
+    SELECT @user_id = inserted.user_id,
+           @stock_id = inserted.stock_id,
+           @quantity = inserted.quantity,
+           @purchase_price = inserted.price,
+           @purchase_date = inserted.order_date,
+           @order_id = inserted.order_id,
+           @order_status = inserted.status,
+           @direction = inserted.direction
+    FROM inserted
+
+    -- Update the quantity and purchase_price in portfolios table
+    IF EXISTS (SELECT * FROM portfolios WHERE user_id = @user_id AND stock_id = @stock_id)
+    BEGIN
+        UPDATE portfolios SET
+            quantity = quantity + @quantity,
+            purchase_price = ((quantity * purchase_price) + (@quantity * @purchase_price)) / (quantity + @quantity),
+            purchase_date = CASE WHEN quantity + @quantity = 0 THEN NULL ELSE @purchase_date END
+        WHERE user_id = @user_id AND stock_id = @stock_id
+    END
+    ELSE
+    BEGIN
+        INSERT INTO portfolios (user_id, stock_id, quantity, purchase_price, purchase_date)
+        VALUES (@user_id, @stock_id, @quantity, @purchase_price, @purchase_date)
+    END
+
+    -- Add a notification to notifications table
+    SET @notification_type = 'order'
+    SET @notification_content = CONCAT('Order #', @order_id, ' has been ', @order_status, '.')
+    INSERT INTO notifications (user_id, notification_type, content)
+    VALUES (@user_id, @notification_type, @notification_content)
+
+    -- Determine transaction type based on order direction and order type
+    SET @transaction_type = CASE 
+                              WHEN @direction = 'buy' THEN 'withdrawal'
+                              WHEN @direction = 'sell' THEN 'deposit'
+                              ELSE 'unknown'
+                            END
+
+    -- Add a transaction record to transactions table
+    SET @transaction_amount = @quantity * @purchase_price
+    SET @transaction_date = @purchase_date
+    INSERT INTO transactions (user_id, transaction_type, amount, transaction_date)
+    VALUES (@user_id, @transaction_type, @transaction_amount, @transaction_date)
+END;
+
+INSERT INTO orders (user_id, stock_id, order_type, direction, quantity, price, status, order_date) 
+VALUES (1, 3,'market', 'buy', 111, 3600.1234, 'executed', '2023-04-28 10:00:00');
+
+SELECT * FROM orders WHERE user_id=1 AND stock_id=3;
+SELECT * FROM portfolios WHERE user_id=1 AND stock_id=3;
+SELECT * FROM notifications WHERE user_id=1;--thêm trigger tự sinh giá trị created_at(now) khi insert data vào notification
+SELECT * FROM transactions WHERE user_id=1;
+GO
+
+/*
+DELETE FROM orders WHERE order_id='2002';
+DELETE FROM portfolios WHERE user_id=1 AND stock_id=3;
+DELETE FROM notifications WHERE user_id=1;--thêm trigger tự sinh giá trị created_at(now) khi insert data vào notification
+DELETE FROM transactions WHERE user_id=1;
+GO
+*/
+SELECT * FROM quotes order by stock_id, quote_id;
+GO
+
+CREATE VIEW view_quotes_realtime AS
+SELECT DISTINCT
+    q.quote_id,
+    s.symbol,
+    s.company_name,
+    m.name as index_name,
+    m.symbol as index_symbol,
+    s.market_cap,
+    s.sector_en,
+    s.industry_en,
+    s.sector,
+    s.industry,
+    s.stock_type,
+    q.price,
+    q.change,
+    q.percent_change,
+    q.volume,
+    q.time_stamp    
+FROM quotes q
+INNER JOIN stocks s ON q.stock_id = s.stock_id
+INNER JOIN index_constituents i ON s.stock_id = i.stock_id
+INNER JOIN market_indices m ON i.index_id = m.index_id
+WHERE q.time_stamp >= (SELECT MAX(time_stamp) FROM quotes WHERE stock_id = q.stock_id);--quan trọng
+GO
+
+SELECT DISTINCT symbol, quote_id, time_stamp FROM view_quotes_realtime order by symbol;
+
+TRUNCATE TABLE quotes;

@@ -19,15 +19,15 @@ def insert_order(user_id, stock_id, order_type, direction, quantity, price, stat
     except Exception as e:
         print(f"Lỗi khi insert order: {str(e)}")
 
-# Thực hiện insert 1000 bản ghi vào bảng orders
-for i in range(1000):
+# Thực hiện insert 2000 bản ghi vào bảng orders
+for i in range(2000):
     user_id = random.choice(user_ids)
     stock_id = random.choice(stock_ids)
-    order_type = random.choice(["executed", "pending", "canceled"])
+    order_type = random.choice(["market", "limit", "stop"])
     direction = random.choice(["buy", "sell"])
     quantity = round(random.uniform(1, 100), 2)
     price = round(random.uniform(1, 100), 2)
-    status = random.choice(["open", "closed"])
+    status = random.choice(["executed", "pending", "canceled"])
     order_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")    
     insert_order(user_id, stock_id, order_type, direction, quantity, price, status, order_date)
 
