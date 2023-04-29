@@ -1,4 +1,5 @@
 USE master;
+--DROP DATABASE StockApp;
 --CREATE DATABASE StockApp;
 IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = N'StockApp')
     CREATE DATABASE StockApp;
@@ -37,6 +38,7 @@ CREATE TABLE stocks (
     rank_source NVARCHAR(200),
     reason NVARCHAR(255) -- Nguyên nhân khiến cổ phiếu được đưa vào danh sách top stocks
 );
+GO
 --Cần dữ liệu theo thời gian thực:
 CREATE TABLE quotes (
     quote_id INT PRIMARY KEY IDENTITY(1,1), -- ID của bản ghi
@@ -48,21 +50,6 @@ CREATE TABLE quotes (
     time_stamp DATETIME NOT NULL -- Thời điểm cập nhật giá cổ phiếu
 );
 GO
-CREATE TABLE stocks (
-    stock_id INT PRIMARY KEY IDENTITY(1,1), -- ID cổ phiếu
-    symbol NVARCHAR(10) UNIQUE NOT NULL, -- Mã cổ phiếu
-    company_name NVARCHAR(255) NOT NULL, -- Tên công ty
-    market_cap DECIMAL(18, 2), -- Vốn hóa thị trường
-    sector NVARCHAR(200), -- Ngành
-    industry NVARCHAR(200), -- Lĩnh vực
-    sector_en NVARCHAR(200),
-    industry_en NVARCHAR(200),
-    stock_type NVARCHAR(50),
-    --Common Stock (Cổ phiếu thường),Preferred Stock (Cổ phiếu ưu đãi),ETF (Quỹ Đầu Tư Chứng Khoán)
-    rank INT DEFAULT 0, -- Thứ hạng trong danh sách top stocks
-    rank_source NVARCHAR(200),
-    reason NVARCHAR(255) -- Nguyên nhân khiến cổ phiếu được đưa vào danh sách top stocks
-);
 --Các chỉ số(index => indices)
 CREATE TABLE market_indices (
     index_id INT PRIMARY KEY IDENTITY,
@@ -108,6 +95,8 @@ CREATE TABLE derivatives (
     open_interest INT NOT NULL,
     time_stamp DATETIME NOT NULL
 );
+GO
+
 ALTER TABLE derivatives
 ADD CONSTRAINT FK_Derivatives_Stocks
 FOREIGN KEY (underlying_asset_id)
@@ -167,7 +156,7 @@ CREATE TABLE watchlists (
 ALTER TABLE watchlists 
 ADD CONSTRAINT unique_WatchlistEntry UNIQUE(user_id, stock_id);
 
-SELECT * FROM users;
+--SELECT * FROM users;
 -- Orders table (Bảng đơn hàng / đặt lệnh)
 /*
 Market order: Lệnh mua/bán thực hiện ngay lập tức với giá thị trường hiện tại. 
@@ -224,6 +213,7 @@ CREATE TABLE notifications (
     is_read BIT DEFAULT 0, -- Đánh dấu đã đọc hay chưa đọc (1: đã đọc, 0: chưa đọc)
     created_at DATETIME -- Thời điểm tạo thông báo
 );
+GO
 CREATE TABLE educational_resources (
     resource_id INT PRIMARY KEY IDENTITY(1,1), -- ID tài liệu
     title NVARCHAR(255) NOT NULL, -- Tiêu đề
@@ -231,6 +221,7 @@ CREATE TABLE educational_resources (
     category NVARCHAR(100), -- Danh mục (ví dụ: đầu tư, chiến lược giao dịch, quản lý rủi ro)
     date_published DATETIME -- Ngày xuất bản
 );
+GO
 -- Linked bank accounts table (Bảng tài khoản ngân hàng liên kết)
 /*
 Routing number (mã số định tuyến) là một mã số được sử dụng để xác định một ngân hàng tại Hoa Kỳ. 
@@ -273,13 +264,15 @@ CREATE TABLE transactions (
     amount DECIMAL(18, 2), -- Số tiền
     transaction_date DATETIME -- Ngày giao dịch
 );
-
-SELECT * FROM users;
-
-SELECT HASHBYTES('SHA2_256', '123456');
-
-DELETE FROM users WHERE user_id=1;
 GO
+
+--SELECT * FROM users;
+
+--SELECT HASHBYTES('SHA2_256', '123456');
+
+--DELETE FROM users WHERE user_id=1;
+--GO
+
 --DROP TABLE users; --cân nhắc kỹ với bảng có data
 
 --INSERT INTO users (username, hashed_password, email, phone, full_name, date_of_birth, country)
@@ -314,15 +307,22 @@ BEGIN
 END;
 GO
 --Thêm các bản ghi vào bảng users sử dụng procedures
-EXEC RegisterUser 'tranphuong', 'password_2', N'tranphuong@example.com', N'0987654321', N'Trần Thị Phương', '1992-02-15', N'Việt Nam';
-EXEC RegisterUser 'leminh', 'password_3', N'leminh@example.com', N'0123412345', N'Lê Văn Minh', '1985-05-30', N'Việt Nam';
-EXEC RegisterUser 'phamtuan', 'password_4', N'phamtuan@example.com', N'0987123456', N'Phạm Đức Tuấn', '1995-07-18', N'Việt Nam';
-EXEC RegisterUser 'hoangle', 'password_5', N'hoangle@example.com', N'0123987654', N'Hoàng Thị Lệ', '1993-03-29', N'Việt Nam';
-EXEC RegisterUser 'nguyentung', 'password_6', N'nguyentung@example.com', N'0987345678', N'Nguyễn Văn Tùng', '1988-09-12', N'Việt Nam';
-EXEC RegisterUser 'vuthilinh', 'password_7', N'vuthilinh@example.com', N'0123654321', N'Vũ Thị Linh', '1991-11-06', N'Việt Nam';
-EXEC RegisterUser 'doquang', 'password_8', N'doquang@example.com', N'0987212345', N'Đỗ Văn Quang', '1997-06-24', N'Việt Nam';
-EXEC RegisterUser 'phamthanh', 'password_9', N'phamthanh@example.com', N'0123898765', N'Phạm Thị Thanh', '1994-12-31', N'Việt Nam';
-EXEC RegisterUser 'nguyenbao', 'password_10', N'nguyenbao@example.com', N'0987456789', N'Nguyễn Thị Bảo', '1996-08-05', N'Việt Nam';
+EXEC RegisterUser 'tranphuong', 'password_1', N'tranphuong@example.com', N'0987654321', N'Trần Thị Phương', '1992-02-15', N'Việt Nam';
+EXEC RegisterUser 'leminh', 'password_1', N'leminh@example.com', N'0123412345', N'Lê Văn Minh', '1985-05-30', N'Việt Nam';
+
+EXEC RegisterUser 'phananh', 'password_1', N'phananh@example.com', N'0912314548', N'Nguyễn Phan Anh', '1993-03-04', N'Việt Nam';
+EXEC RegisterUser 'tranhieu', 'password_1', N'tranhieu@example.com', N'0912398748', N'Trần Văn Hiếu', '1994-03-04', N'Việt Nam';
+EXEC RegisterUser 'lehang', 'password_1', N'lehang@example.com', N'0934514548', N'Lệ Hằng', '1985-05-30', N'Việt Nam';
+
+EXEC RegisterUser 'phamtuan', 'password_1', N'phamtuan@example.com', N'0987123456', N'Phạm Đức Tuấn', '1995-07-18', N'Việt Nam';
+EXEC RegisterUser 'hoangle', 'password_1', N'hoangle@example.com', N'0123987654', N'Hoàng Thị Lệ', '1993-03-29', N'Việt Nam';
+EXEC RegisterUser 'nguyentung', 'password_1', N'nguyentung@example.com', N'0987345678', N'Nguyễn Văn Tùng', '1988-09-12', N'Việt Nam';
+EXEC RegisterUser 'vuthilinh', 'password_1', N'vuthilinh@example.com', N'0123654321', N'Vũ Thị Linh', '1991-11-06', N'Việt Nam';
+EXEC RegisterUser 'doquang', 'password_1', N'doquang@example.com', N'0987212345', N'Đỗ Văn Quang', '1997-06-24', N'Việt Nam';
+EXEC RegisterUser 'phamthanh', 'password_1', N'phamthanh@example.com', N'0123898765', N'Phạm Thị Thanh', '1994-12-31', N'Việt Nam';
+EXEC RegisterUser 'nguyenbao', 'password_1', N'nguyenbao@example.com', N'0987456789', N'Nguyễn Thị Bảo', '1996-08-05', N'Việt Nam';
+EXEC RegisterUser 'jennynguyen', 'password_1', N'jelly@example.com', N'0987456789', N'Jenny Nguyễn', '1997-08-05', N'Việt Nam';
+
 GO
 
 --SELECT * FROM users;
@@ -346,8 +346,9 @@ BEGIN
 END;
 GO
 
-EXEC dbo.CheckLogin N'phamtuan@example.com', 'password_4';
-SELECT * FROM stocks;
+--EXEC dbo.CheckLogin N'phamtuan@example.com', 'password_4';
+--SELECT * FROM stocks;
+
 --dữ liệu Fake, chỉ dùng cho mục đích học SQL Server
 INSERT INTO stocks (symbol, company_name, market_cap, sector, industry, stock_type, sector_en, industry_en)
 VALUES 
@@ -467,10 +468,10 @@ VALUES
 (5, 27),
 (5, 28);
 GO
-SELECT * FROM stocks;
-SELECT * FROM index_constituents;
-SELECT * FROM market_indices;
-GO;
+-- SELECT * FROM stocks;
+-- SELECT * FROM index_constituents;
+-- SELECT * FROM market_indices;
+
 --USE StockApp;
 --Đây chỉ là fake data, phục vụ việc học SQL Server
 --DROP VIEW v_stock_index; GO
@@ -493,7 +494,8 @@ INNER JOIN index_constituents AS i
 ON s.stock_id = i.stock_id
 INNER JOIN market_indices AS m
 ON m.index_id = i.index_id;
-GO;
+GO
+
 --Đây chỉ là fake data, phục vụ việc học SQL Server
 SELECT 
     v.index_symbol,
@@ -517,6 +519,7 @@ ORDER BY v.index_symbol;
 SELECT count(*) AS total_companies
 FROM v_stock_index
 WHERE market_cap > 30000000000;
+GO
 
 SELECT 
     v.symbol, 
@@ -551,8 +554,8 @@ FROM derivatives AS d
 ORDER BY underlying_asset_id;
 GO
 
-DROP VIEW v_stocks_derivatives; 
-GO
+-- DROP VIEW v_stocks_derivatives; 
+-- GO
 
 CREATE VIEW v_stocks_derivatives 
 AS
@@ -616,6 +619,7 @@ VALUES
 GO
 
 SELECT * FROM covered_warrants;
+GO
 
 SELECT 'Sell' AS order_type, COUNT(*) AS num_orders
 FROM covered_warrants
@@ -624,38 +628,39 @@ UNION ALL
 SELECT 'Buy' AS order_type, COUNT(*) AS num_orders
 FROM covered_warrants
 WHERE warrant_type = 'Put';
-
+GO
 --Đây chỉ là fake data, phục vụ việc học SQL Server
 --TRUNCATE TABLE etfs;
 --SELECT * FROM etfs;
 
 --SELECT * FROM stocks;
-TRUNCATE TABLE stocks;
+--TRUNCATE TABLE stocks;
 
 SELECT name, OBJECT_NAME(parent_object_id) AS table_name
 FROM sys.foreign_keys
 WHERE referenced_object_id = OBJECT_ID('stocks')
 
-ALTER TABLE quotes
-DROP CONSTRAINT FK__quotes__stock_id__44FF419A;
+-- ALTER TABLE quotes
+-- DROP CONSTRAINT FK__quotes__stock_id__44FF419A;
 
-TRUNCATE TABLE stocks;
+--TRUNCATE TABLE stocks;
 SELECT * FROM stocks WHERE stock_type='etf' AND sector_en='food';
-
+GO
 SELECT * FROM stocks WHERE company_name LIKE '%group%' AND market_cap > 900000000;
-
+GO
 SELECT * FROM etf_holdings;
-
+GO
 SELECT * FROM watchlists;
+GO
 
-TRUNCATE TABLE orders;
+--TRUNCATE TABLE orders;
 SELECT count(*) FROM orders;
 
 SELECT count(*) FROM orders;
 SELECT * FROM users;
 
 ---Start here
-TRUNCATE TABLE portfolios;
+--TRUNCATE TABLE portfolios;
 SELECT * FROM portfolios;
 
 INSERT INTO educational_resources (title, content, category, date_published) VALUES
@@ -682,6 +687,7 @@ VALUES
 (11, 'BAN Bank', CONCAT('ACCT-', NEWID()), '123456789', 'checking'),
 (12, 'KOF Bank', CONCAT('ACCT-', NEWID()), '234567890', 'savings'),
 (13, 'KFC Bank', CONCAT('ACCT-', NEWID()), '345678901', 'checking');
+GO
 
 SELECT * from users order by user_id;
 
@@ -701,6 +707,7 @@ VALUES (4, 'lehang', HASHBYTES('SHA2_256', 'password_1'), 'lehang@example.com', 
 SELECT COLUMN_NAME
 FROM INFORMATION_SCHEMA.COLUMNS
 WHERE TABLE_NAME = 'users';
+GO
 
 SELECT * FROM orders;
 SELECT * FROM portfolios;
@@ -720,8 +727,8 @@ portfolios(user_id,stock_id,quantity,purchase_price,purchase_date)
 notifications(notification_id,user_id,notification_type,content,is_read,created_at)
 transactions(transaction_id,user_id,linked_account_id,transaction_type,amount,transaction_date)
 */
-DROP TRIGGER trigger_orders; 
-GO
+-- DROP TRIGGER trigger_orders; 
+-- GO
 
 CREATE TRIGGER trigger_orders
 ON orders
@@ -789,6 +796,7 @@ BEGIN
     INSERT INTO transactions (user_id, transaction_type, amount, transaction_date)
     VALUES (@user_id, @transaction_type, @transaction_amount, @transaction_date)
 END;
+GO
 
 INSERT INTO orders (user_id, stock_id, order_type, direction, quantity, price, status, order_date) 
 VALUES (1, 3,'market', 'buy', 111, 3600.1234, 'executed', '2023-04-28 10:00:00');
@@ -835,5 +843,6 @@ WHERE q.time_stamp >= (SELECT MAX(time_stamp) FROM quotes WHERE stock_id = q.sto
 GO
 
 SELECT DISTINCT symbol, quote_id, time_stamp FROM view_quotes_realtime order by symbol;
+GO
 
-TRUNCATE TABLE quotes;
+--TRUNCATE TABLE quotes;
