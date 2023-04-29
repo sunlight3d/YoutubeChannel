@@ -4,8 +4,7 @@ from database import Database
 
 db = Database()
 
-def insert_10k_records():    
-
+def insert_10k_records():        
     # Kiểm tra số lượng bản ghi hiện có trong bảng        
     db.cursor.execute('SELECT COUNT(*) FROM quotes')
     row = db.cursor.fetchone()
