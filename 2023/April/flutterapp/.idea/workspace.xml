@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="251180c2-2159-43eb-a119-8d934ec8c723" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../SecuritiesSQLDatabase/python_app/insert_quotes.py" beforeDir="false" afterPath="$PROJECT_DIR$/../SecuritiesSQLDatabase/python_app/insert_quotes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SecuritiesSQLDatabase/StockApp.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../SecuritiesSQLDatabase/StockApp.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

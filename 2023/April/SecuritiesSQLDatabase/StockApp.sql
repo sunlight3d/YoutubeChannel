@@ -8,6 +8,7 @@ END
 CREATE DATABASE StockApp;
 GO
 USE StockApp;
+GO
 CREATE TABLE users (
     user_id INT PRIMARY KEY IDENTITY(1,1), -- ID người dùng
     username NVARCHAR(100) UNIQUE NOT NULL, -- Tên đăng nhập
@@ -18,6 +19,7 @@ CREATE TABLE users (
     date_of_birth DATE, -- Ngày sinh
     country NVARCHAR(200) -- Quốc gia
 );
+GO
 --một người dùng có thể đăng nhập vài thiết bị
 CREATE TABLE user_devices (
     id INT PRIMARY KEY IDENTITY, -- ID tự tăng, định danh duy nhất cho mỗi thiết bị của người dùng
@@ -25,6 +27,7 @@ CREATE TABLE user_devices (
     device_id NVARCHAR(255) NOT NULL, -- ID của thiết bị (VD: UUID, IMEI, v.v.)    
     FOREIGN KEY (user_id) REFERENCES users(user_id) -- Liên kết khóa ngoại đến bảng users
 );
+GO
 -- Stocks table (Bảng cổ phiếu)
 CREATE TABLE stocks (
     stock_id INT PRIMARY KEY IDENTITY(1,1), -- ID cổ phiếu
@@ -59,6 +62,7 @@ CREATE TABLE market_indices (
     name NVARCHAR(255) NOT NULL,
     symbol NVARCHAR(50) UNIQUE NOT NULL
 );
+GO
 --market_indices - stocks => quan hệ nhiều nhiều (n - n)
 --index_constituents: là danh sách các công ty đã được chọn để 
 --tính toán chỉ số của một chỉ số thị trường chứng khoán nhất định. 
@@ -73,6 +77,7 @@ ALTER TABLE index_constituents
 ADD CONSTRAINT FK_IndexConstituents_Stocks
 FOREIGN KEY (stock_id)
 REFERENCES stocks (stock_id);
+GO
 
 CREATE TABLE derivatives (
     derivative_id INT PRIMARY KEY IDENTITY, -- ID của chứng khoán phái sinh
@@ -104,7 +109,7 @@ ALTER TABLE derivatives
 ADD CONSTRAINT FK_Derivatives_Stocks
 FOREIGN KEY (underlying_asset_id)
 REFERENCES stocks (stock_id);
-
+GO
 -- covered warrants được bảo đảm bởi một bên thứ ba, 
 -- thường là một ngân hàng hoặc một công ty chuyên cung cấp dịch vụ này
 CREATE TABLE covered_warrants (
@@ -116,11 +121,13 @@ CREATE TABLE covered_warrants (
     strike_price DECIMAL(18, 4), -- Giá thực hiện (giá mà người mua của chứng quyền có bảo đảm có quyền mua/bán tài sản cơ bản)
     warrant_type NVARCHAR(50) -- Loại chứng quyền có bảo đảm (ví dụ: mua (Call) hoặc bán (Put))
 );
+GO
 
 ALTER TABLE covered_warrants
 ADD CONSTRAINT FK_CovedWarrants_Stocks
 FOREIGN KEY (underlying_asset_id)
 REFERENCES stocks (stock_id);
+GO
 
 CREATE TABLE etfs (
     etf_id INT PRIMARY KEY IDENTITY, -- ID của Quỹ Đầu Tư Chứng Khoán (ETF)
@@ -129,6 +136,8 @@ CREATE TABLE etfs (
     management_company NVARCHAR(255), -- Tên công ty quản lý Quỹ Đầu Tư Chứng Khoán (ETF)
     inception_date DATE -- Ngày thành lập Quỹ Đầu Tư Chứng Khoán (ETF)
 );
+GO
+
 --Quan hệ giữa etf và etf_quotes là quan hệ 1-n (một quỹ đầu tư có thể có nhiều bản ghi quotes trong cùng một ngày).
 CREATE TABLE etf_quotes (
     quote_id INT PRIMARY KEY IDENTITY(1,1), -- ID của bản ghi
@@ -139,6 +148,7 @@ CREATE TABLE etf_quotes (
     total_volume INT NOT NULL, -- Tổng khối lượng giao dịch trong ngày
     time_stamp DATETIME NOT NULL -- Thời điểm cập nhật giá của Quỹ Đầu Tư Chứng Khoán (ETF)
 );
+GO
 CREATE TABLE etf_holdings (
     -- ID của Quỹ Đầu Tư Chứng Khoán (ETF) liên quan đến mã cổ phiếu được giữ (tham chiếu đến bảng etfs).
     etf_id INT FOREIGN KEY REFERENCES etfs(etf_id), 
@@ -149,15 +159,17 @@ CREATE TABLE etf_holdings (
     weight DECIMAL(18, 4) 
     -- Trọng số của cổ phiếu đó trong tổng danh mục đầu tư của Quỹ Đầu Tư Chứng Khoán (ETF), thể hiện tỷ lệ phần trăm của cổ phiếu đó so với tổng giá trị danh mục.
 );
+GO
 -- Watchlists table (Bảng danh sách theo dõi)
 -- N users theo dõi N stocks
 CREATE TABLE watchlists (
     user_id INT FOREIGN KEY REFERENCES users(user_id), -- ID người dùng
     stock_id INT FOREIGN KEY REFERENCES stocks(stock_id) -- ID cổ phiếu
 );
-
+GO
 ALTER TABLE watchlists 
 ADD CONSTRAINT unique_WatchlistEntry UNIQUE(user_id, stock_id);
+GO
 
 --SELECT * FROM users;
 -- Orders table (Bảng đơn hàng / đặt lệnh)
@@ -165,11 +177,9 @@ ADD CONSTRAINT unique_WatchlistEntry UNIQUE(user_id, stock_id);
 Market order: Lệnh mua/bán thực hiện ngay lập tức với giá thị trường hiện tại. 
 Trong trường hợp không có sẵn đủ số lượng cổ phiếu mà bạn yêu cầu, 
 thì lệnh sẽ được thực hiện với số lượng tối đa có thể đáp ứng được trên thị trường.
-
 Limit order: Lệnh mua/bán với giá giới hạn. Bạn chỉ muốn mua/bán chứng khoán với giá mà bạn muốn, 
 thay vì giá thị trường hiện tại. Lệnh mua sẽ được thực hiện với giá thấp hơn hoặc bằng giá giới hạn, 
 còn lệnh bán sẽ được thực hiện với giá cao hơn hoặc bằng giá giới hạn.
-
 Stop order: Lệnh mua/bán chỉ được thực hiện khi giá chứng khoán đạt đến mức giá xác định trước đó. 
 Lệnh mua sẽ được thực hiện khi giá chứng khoán vượt qua giá stop, 
 còn lệnh bán sẽ được thực hiện khi giá chứng khoán giảm dưới mức giá stop. 
@@ -187,7 +197,7 @@ CREATE TABLE orders (
     status NVARCHAR(20), -- Trạng thái (ví dụ: pending, executed, canceled)
     order_date DATETIME -- Ngày đặt hàng
 );
-
+GO
 -- Portfolios table (Bảng danh mục đầu tư)
 CREATE TABLE portfolios (
     user_id INT FOREIGN KEY REFERENCES users(user_id), -- ID người dùng
@@ -196,11 +206,13 @@ CREATE TABLE portfolios (
     purchase_price DECIMAL(18, 4), -- Giá mua
     purchase_date DATETIME -- Ngày mua
 );
+GO
 
 ALTER TABLE portfolios
 ADD CONSTRAINT FK_Portfolios_Stocks
 FOREIGN KEY (stock_id)
 REFERENCES stocks (stock_id);
+GO
 
 /*
 Thông báo:
@@ -244,14 +256,11 @@ GO
 /*
 Khi một order được tạo ra, các bảng sau sẽ bị thay đổi:
 Bảng orders: Sẽ thêm một bản ghi mới đại diện cho đơn hàng mới được tạo ra.
-
 Bảng portfolios: Nếu đơn hàng là loại mua (buy), số lượng cổ phiếu tương ứng sẽ được thêm vào 
 danh mục đầu tư của người dùng; 
 nếu đơn hàng là loại bán (sell), số lượng cổ phiếu tương ứng sẽ bị trừ đi từ danh mục đầu tư của người dùng.
-
 Bảng notifications: Một thông báo mới có thể được tạo ra để thông báo cho người dùng về việc 
 đơn hàng đã được thực hiện thành công hoặc thất bại.
-
 Bảng transactions: Nếu đơn hàng là loại mua (buy), 
 một giao dịch mới sẽ được thêm vào bảng này để đại diện cho số tiền 
 được rút ra từ tài khoản ngân hàng của người dùng và chuyển đến sàn giao dịch; 
@@ -309,6 +318,11 @@ BEGIN
     VALUES (@username, HASHBYTES('SHA2_256', @password), @email, @phone, @full_name, @date_of_birth, @country);
 END;
 GO
+
+INSERT INTO users (username, hashed_password, email, phone, full_name, date_of_birth, country)
+    VALUES ('xx11', HASHBYTES('SHA2_256', 'paaa'), 'xxx@ddd.com', N'0sssasdd', 'Nguyen Van A','1985-05-30', N'Việt Nam');
+select * from users;
+
 --Thêm các bản ghi vào bảng users sử dụng procedures
 EXEC RegisterUser 'tranphuong', 'password_1', N'tranphuong@example.com', N'0987654321', N'Trần Thị Phương', '1992-02-15', N'Việt Nam';
 EXEC RegisterUser 'leminh', 'password_1', N'leminh@example.com', N'0123412345', N'Lê Văn Minh', '1985-05-30', N'Việt Nam';
@@ -353,6 +367,7 @@ GO
 --SELECT * FROM stocks;
 
 --dữ liệu Fake, chỉ dùng cho mục đích học SQL Server
+/*
 INSERT INTO stocks (symbol, company_name, market_cap, sector, industry, stock_type, sector_en, industry_en)
 VALUES 
 ('VNM', N'Vinamilk', 200000000000, N'Thực phẩm', N'Sữa và sản phẩm sữa', 'Common Stock', 'Food', 'Dairy Products'),
@@ -384,7 +399,7 @@ VALUES
 ('GSCP3', N'GreenSolar Preferred 3', 100000000, N'Năng lượng', N'Năng lượng tái tạo', 'Preferred Stock', 'Preferred Stock', 'Preferred Stock'),
 ('GSCP4', N'GreenSolar Preferred 4', 50000000, N'Năng lượng', N'Năng lượng tái tạo', 'Preferred Stock', 'Preferred Stock', 'Preferred Stock');
 GO
-
+*/
 --SELECT * FROM quotes;
 INSERT INTO quotes (stock_id, price, change, percent_change, volume, time_stamp)
 VALUES
@@ -700,10 +715,8 @@ SET IDENTITY_INSERT users ON;
 /*
 INSERT INTO users (user_id, username, hashed_password, email, phone, full_name, date_of_birth, country)
 VALUES (1, 'phananh', HASHBYTES('SHA2_256', 'password_1'), 'phananh@example.com', '0912314548', N'Nguyễn Phan Anh', '1993-03-04', N'Việt Nam');
-
 INSERT INTO users (user_id, username, hashed_password, email, phone, full_name, date_of_birth, country)
 VALUES (3, 'tranhieu', HASHBYTES('SHA2_256', 'password_1'), 'tranhieu@example.com', '0912398748', N'Trần Văn Hiếu', '1994-03-04', N'Việt Nam');
-
 INSERT INTO users (user_id, username, hashed_password, email, phone, full_name, date_of_birth, country)
 VALUES (4, 'lehang', HASHBYTES('SHA2_256', 'password_1'), 'lehang@example.com', '0934514548', N'Lệ Hằng', '1995-03-04', N'Việt Nam');
 */
@@ -847,5 +860,3 @@ GO
 
 SELECT DISTINCT symbol, quote_id, time_stamp FROM view_quotes_realtime order by symbol;
 GO
-
---TRUNCATE TABLE quotes;
