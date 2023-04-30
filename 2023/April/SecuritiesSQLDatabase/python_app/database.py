@@ -27,3 +27,20 @@ class Database:
     def execute_query(self, query, params):
         self.cursor.execute(query, params)
         self.conn.commit()
+
+"""
+MacOS:
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+brew tap microsoft/mssql-release https://github.com/Microsoft/homebrew-mssql-release
+brew update
+HOMEBREW_ACCEPT_EULA=Y brew install msodbcsql18 mssql-tools18
+
+pip install faker
+python insert_stocks.py
+python insert_quotes.py
+python insert_portfolios.py
+python insert_watchlists.py
+python insert_orders.py
+python insert_etfs.py
+python insert_etf_holdings.py 
+"""

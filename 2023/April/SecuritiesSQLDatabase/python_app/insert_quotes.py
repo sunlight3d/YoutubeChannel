@@ -50,4 +50,4 @@ def insert_random_quotes():
         time.sleep(5)
 
 insert_10k_records()
-insert_random_quotes()
+#insert_random_quotes()

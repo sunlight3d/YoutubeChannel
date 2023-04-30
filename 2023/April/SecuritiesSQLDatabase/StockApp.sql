@@ -1,8 +1,11 @@
 USE master;
 --DROP DATABASE StockApp;
 --CREATE DATABASE StockApp;
-IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = N'StockApp')
-    CREATE DATABASE StockApp;
+IF EXISTS(SELECT * FROM sys.databases WHERE name = 'StockApp')
+BEGIN
+  DROP DATABASE StockApp;  
+END
+CREATE DATABASE StockApp;
 GO
 USE StockApp;
 CREATE TABLE users (

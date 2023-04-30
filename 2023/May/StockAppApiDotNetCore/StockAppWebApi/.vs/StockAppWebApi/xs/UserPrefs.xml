@@ -1,4 +1,31 @@
 ﻿<Properties StartupConfiguration="{FB6AAE73-C89F-4212-962B-42D3AE4CA811}|https">
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.StockAppWebApi FirstBuild="True" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.StockAppWebApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="StockAppWebApi/Controllers/WeatherForecastController.cs">
+    <Files>
+      <File FileName="StockAppWebApi/Program.cs" Line="16" Column="24" />
+      <File FileName="StockAppWebApi/Controllers/WeatherForecastController.cs" Line="23" Column="46" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="StockAppWebApi" expanded="True">
+            <Node name="StockAppWebApi" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="WeatherForecastController.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
 </Properties>
