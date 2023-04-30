@@ -9,7 +9,9 @@ namespace StockAppWebApi.Repositories
         Task<User?> GetById(int id);
         Task<User?> GetByUsername(string username);
         Task<User?> GetByEmail(string email);
+
         Task<User?> Create(RegisterViewModel registerViewModel);
+        Task<string> Login(LoginViewModel loginViewModel);
     }
 }
 

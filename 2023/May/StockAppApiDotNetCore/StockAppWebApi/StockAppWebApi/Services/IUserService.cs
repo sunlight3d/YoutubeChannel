@@ -6,7 +6,9 @@ namespace StockAppWebApi.Services
 {
     public interface IUserService
     {
-        Task<int> Register(RegisterViewModel registerViewModel);
+        Task<User?> Register(RegisterViewModel registerViewModel);
+        //jwt string
+        Task<string> Login(LoginViewModel loginViewModel);        
     }
 }
 

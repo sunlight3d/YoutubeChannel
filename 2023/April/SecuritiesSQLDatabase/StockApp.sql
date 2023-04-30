@@ -315,13 +315,19 @@ CREATE PROCEDURE dbo.RegisterUser
 AS
 BEGIN
     INSERT INTO users (username, hashed_password, email, phone, full_name, date_of_birth, country)
-    VALUES (@username, HASHBYTES('SHA2_256', @password), @email, @phone, @full_name, @date_of_birth, @country);
+    VALUES (@username, HASHBYTES('SHA2_256', @password), @email, @phone, @full_name, @date_of_birth, @country);    
+    SELECT * FROM users WHERE user_id = @@IDENTITY;
 END;
 GO
 
-INSERT INTO users (username, hashed_password, email, phone, full_name, date_of_birth, country)
-    VALUES ('xx11', HASHBYTES('SHA2_256', 'paaa'), 'xxx@ddd.com', N'0sssasdd', 'Nguyen Van A','1985-05-30', N'Việt Nam');
-select * from users;
+SET IDENTITY_INSERT [dbo].[users] OFF
+
+INSERT INTO users (username,hashed_password,email, phone, full_name, date_of_birth, country)
+    VALUES ('', HASHBYTES('SHA2_256', 'password_1'), '', N'0sssasdd', 'Nguyen Vassssn A','1986-05-30', N'Việt Nam');
+
+--EXEC RegisterUser 'xx11', '', N'xxx@ddd.com', N'0sssasdd', N'Lê xx11 xx11', '1985-05-30', N'Việt Nam';
+--DELETE FROM users WHERE username='hoangnd123';
+--select * from users WHERE username='hoangnd123';
 
 --Thêm các bản ghi vào bảng users sử dụng procedures
 EXEC RegisterUser 'tranphuong', 'password_1', N'tranphuong@example.com', N'0987654321', N'Trần Thị Phương', '1992-02-15', N'Việt Nam';
@@ -367,7 +373,7 @@ GO
 --SELECT * FROM stocks;
 
 --dữ liệu Fake, chỉ dùng cho mục đích học SQL Server
-/*
+
 INSERT INTO stocks (symbol, company_name, market_cap, sector, industry, stock_type, sector_en, industry_en)
 VALUES 
 ('VNM', N'Vinamilk', 200000000000, N'Thực phẩm', N'Sữa và sản phẩm sữa', 'Common Stock', 'Food', 'Dairy Products'),
@@ -399,7 +405,7 @@ VALUES
 ('GSCP3', N'GreenSolar Preferred 3', 100000000, N'Năng lượng', N'Năng lượng tái tạo', 'Preferred Stock', 'Preferred Stock', 'Preferred Stock'),
 ('GSCP4', N'GreenSolar Preferred 4', 50000000, N'Năng lượng', N'Năng lượng tái tạo', 'Preferred Stock', 'Preferred Stock', 'Preferred Stock');
 GO
-*/
+
 --SELECT * FROM quotes;
 INSERT INTO quotes (stock_id, price, change, percent_change, volume, time_stamp)
 VALUES

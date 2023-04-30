@@ -16,8 +16,8 @@ services:
       - ./db_data:/var/opt/mssql/data
       #- ./sql_init:/docker-entrypoint-initdb.d #sql_init contains SQL scripts
     restart: always
-    mem_limit: 2g # Memory limit for the container
-    memswap_limit: 3g     
+    mem_limit: 12g # Memory limit for the container
+    memswap_limit: 13g     
 
 #docker-compose --file ./docker-compose.yml up --detach
 #docker-compose ps

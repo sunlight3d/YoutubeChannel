@@ -8,16 +8,19 @@ namespace StockAppWebApi.Models
     public class User
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("user_id")]
         public int UserId { get; set; }
 
         [Required(ErrorMessage = "Username is required")]
-        [StringLength(100, MinimumLength = 6, ErrorMessage = "Username must be between 6 and 100 characters")]
+        [StringLength(100, MinimumLength = 6,
+            ErrorMessage = "Username must be between 6 and 100 characters")]
         [Column("username")]
         public string Username { get; set; } = "";
 
         [Required(ErrorMessage = "Password is required")]
-        [StringLength(200, MinimumLength = 6, ErrorMessage = "Password must be between 6 and 200 characters")]
+        [StringLength(200, MinimumLength = 6,
+            ErrorMessage = "Password must be between 6 and 200 characters")]
         [Column("hashed_password")]
         public string HashedPassword { get; set; } = "";
 
@@ -41,6 +44,9 @@ namespace StockAppWebApi.Models
         [StringLength(200, ErrorMessage = "Country name cannot exceed 200 characters")]
         [Column("country")]
         public string Country { get; set; } = "";
+
+        //navigation
+        public ICollection<WatchList>? WatchLists { get; set; }
     }
 
 }
