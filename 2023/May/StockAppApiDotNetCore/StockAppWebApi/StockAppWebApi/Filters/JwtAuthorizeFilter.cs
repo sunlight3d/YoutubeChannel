@@ -51,7 +51,7 @@ namespace StockAppWebApi.Filters
                 var userId = int.Parse(jwtToken.Claims.First().Value);
                 context.HttpContext.Items["UserId"] = userId;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 context.Result = new UnauthorizedResult();
                 return;

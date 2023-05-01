@@ -17,11 +17,11 @@ namespace StockAppWebApi.Controllers
         private readonly IWatchListService _watchlistService;
         private readonly IUserService _userService;
         private readonly IStockService _stockService;        
-
         public WatchListController(
             IWatchListService watchlistService,
             IUserService userService,
-            IStockService stockService)
+            IStockService stockService
+            )
         {
             _watchlistService = watchlistService;
             _userService = userService;
@@ -35,12 +35,12 @@ namespace StockAppWebApi.Controllers
             // Lấy UserId từ context
             int userId = HttpContext.GetUserId();            
             // Kiểm tra người dùng và cổ phiếu tồn tại
-            var user = await _userService.GetUserById(userId);
-            var stock = await _stockService.GetStockById(stockId);
+            var user = await _userService.GetUserById(userId);            
             if (user == null)
             {
                 return NotFound("User not found.");
             }
+            var stock = await _stockService.GetStockById(stockId);
             if (stock == null)
             {
                 return NotFound("Stock not found.");

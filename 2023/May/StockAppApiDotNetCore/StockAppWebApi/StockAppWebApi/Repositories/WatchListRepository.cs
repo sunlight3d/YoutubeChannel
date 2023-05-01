@@ -34,9 +34,10 @@ namespace StockAppWebApi.Repositories
 
         public async Task<WatchList?> GetWatchlist(int userId, int stockId)
         {
-            return await _context.WatchLists
+            WatchList? watchList = await _context.WatchLists
                 .FirstOrDefaultAsync(watchList => watchList.UserId == userId
-                    && watchList.StockId == stockId);
+                    && watchList.StockId == stockId); 
+            return watchList;
         }
     }
 }

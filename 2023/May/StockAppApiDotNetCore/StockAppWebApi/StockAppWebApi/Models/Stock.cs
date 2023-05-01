@@ -49,11 +49,11 @@ namespace StockAppWebApi.Models
 
         [MaxLength(200, ErrorMessage = "Rank source must not exceed 200 characters")]
         [Column("rank_source")]
-        public string RankSource { get; set; } = "";
+        public string? RankSource { get; set; }
 
         [MaxLength(255, ErrorMessage = "Reason must not exceed 255 characters")]
         [Column("reason")]
-        public string Reason { get; set; } = "";
+        public string? Reason { get; set; }
 
         //navigation
         public ICollection<WatchList>? WatchLists { get; set; }

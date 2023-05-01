@@ -1,5 +1,6 @@
 ﻿using System;
 using StockAppWebApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace StockAppWebApi.Repositories
 {
@@ -14,7 +15,8 @@ namespace StockAppWebApi.Repositories
         
         public async Task<Stock?> GetStockById(int stockId)
         {
-            return await _context.Stocks.FindAsync(stockId);
+            Stock? stock = await _context.Stocks.FindAsync(stockId);            
+            return stock;
         }
     }
 }
