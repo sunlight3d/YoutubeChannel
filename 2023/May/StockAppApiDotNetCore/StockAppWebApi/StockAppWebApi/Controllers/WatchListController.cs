@@ -2,7 +2,9 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.EntityFrameworkCore;
 using StockAppWebApi.Attributes;
+using StockAppWebApi.Extensions;
 using StockAppWebApi.Filters;
 using StockAppWebApi.Services;
 
@@ -14,20 +16,16 @@ namespace StockAppWebApi.Controllers
     {
         private readonly IWatchListService _watchlistService;
         private readonly IUserService _userService;
-        private readonly IStockService _stockService;
-
-        private readonly AuthorizationFilterContext _context;
+        private readonly IStockService _stockService;        
 
         public WatchListController(
             IWatchListService watchlistService,
             IUserService userService,
-            IStockService stockService,
-            AuthorizationFilterContext authorizationFilterContext)
+            IStockService stockService)
         {
             _watchlistService = watchlistService;
             _userService = userService;
-            _stockService = stockService;
-            _context = authorizationFilterContext;
+            _stockService = stockService;            
         }
 
         [HttpPost("AddStockToWatchlist/{stockId}")]
@@ -35,11 +33,7 @@ namespace StockAppWebApi.Controllers
         public async Task<IActionResult> AddStockToWatchlist(int stockId)
         {
             // Lấy UserId từ context
-            if (!int.TryParse(_context.HttpContext.User
-                .FindFirst(ClaimTypes.NameIdentifier)?.Value, out var userId))
-            {
-                return Unauthorized();
-            }
+            int userId = HttpContext.GetUserId();            
             // Kiểm tra người dùng và cổ phiếu tồn tại
             var user = await _userService.GetUserById(userId);
             var stock = await _stockService.GetStockById(stockId);

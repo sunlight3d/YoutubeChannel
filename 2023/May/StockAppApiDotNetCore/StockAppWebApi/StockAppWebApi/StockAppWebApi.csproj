@@ -32,6 +32,7 @@
     <None Remove="ViewModels\" />
     <None Remove="Filters\" />
     <None Remove="Attributes\" />
+    <None Remove="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -41,5 +42,6 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Filters\" />
     <Folder Include="Attributes\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 </Project>
