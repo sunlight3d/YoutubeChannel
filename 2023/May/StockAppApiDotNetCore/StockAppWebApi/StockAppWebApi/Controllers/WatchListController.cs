@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using StockAppWebApi.Attributes;
 using StockAppWebApi.Filters;
 using StockAppWebApi.Services;
 
@@ -28,6 +29,7 @@ namespace StockAppWebApi.Controllers
             _stockService = stockService;
             _context = authorizationFilterContext;
         }
+
         [HttpPost("AddStockToWatchlist/{stockId}")]
         [JwtAuthorize]        
         public async Task<IActionResult> AddStockToWatchlist(int stockId)

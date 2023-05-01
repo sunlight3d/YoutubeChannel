@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="251180c2-2159-43eb-a119-8d934ec8c723" name="Changes" comment="" />
+    <list default="true" id="251180c2-2159-43eb-a119-8d934ec8c723" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Program.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
