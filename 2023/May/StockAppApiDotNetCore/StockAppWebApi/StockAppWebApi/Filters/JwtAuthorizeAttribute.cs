@@ -13,8 +13,7 @@ namespace StockAppWebApi.Filters
 {
     public class JwtAuthorizeAttribute : TypeFilterAttribute
     {
-        
-        
+                
         public JwtAuthorizeAttribute()
             : base(typeof(JwtAuthorizeFilter))
         {

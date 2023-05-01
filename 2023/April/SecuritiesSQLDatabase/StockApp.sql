@@ -45,6 +45,7 @@ CREATE TABLE stocks (
     reason NVARCHAR(255) -- Nguyên nhân khiến cổ phiếu được đưa vào danh sách top stocks
 );
 GO
+--SELECT * FROM users WHERE email='hoangnd123@example.com';
 --Cần dữ liệu theo thời gian thực:
 CREATE TABLE quotes (
     quote_id INT PRIMARY KEY IDENTITY(1,1), -- ID của bản ghi

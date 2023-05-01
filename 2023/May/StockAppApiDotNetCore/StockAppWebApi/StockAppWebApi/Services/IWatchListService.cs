@@ -1,9 +1,12 @@
 ﻿using System;
+using StockAppWebApi.Models;
+
 namespace StockAppWebApi.Services
 {
 	public interface IWatchListService
 	{
-        public Task AddStockToWatchlist(int userId, int stockId);
+        Task AddStockToWatchlist(int userId, int stockId);
+        Task<WatchList?> GetWatchlist(int userId, int stockId);
     }
 }
 

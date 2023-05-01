@@ -1,4 +1,5 @@
 ﻿using System;
+using StockAppWebApi.Models;
 using StockAppWebApi.Repositories;
 
 namespace StockAppWebApi.Services
@@ -15,6 +16,11 @@ namespace StockAppWebApi.Services
         public async Task AddStockToWatchlist(int userId, int stockId)
         {
             await _repository.AddStockToWatchlist(userId, stockId);
+        }
+
+        public async Task<WatchList?> GetWatchlist(int userId, int stockId)
+        {
+            return await _repository.GetWatchlist(userId, stockId);
         }
     }
 
