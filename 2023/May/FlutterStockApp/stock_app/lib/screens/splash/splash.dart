@@ -32,7 +32,7 @@ class SplashScreen extends StatelessWidget {
               SizedBox(height: 10,),
               Text(
                 //"This is splash,x = ${this.x}",
-                'This is splash 11',
+                'This is splash',
                 style: TextStyle(fontSize: 25, color: Colors.white),
               ),
             ],

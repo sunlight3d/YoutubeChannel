@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:stock_app/utilities/alert.dart';
+import 'package:stock_app/screens/commons/utilities.dart';
 import 'package:stock_app/validators/EmailValidator.dart';
 import 'package:stock_app/validators/PasswordValidator.dart';
 
@@ -14,11 +14,12 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   void _login() async{
-    //alert(context, 'You pressed Login', AlertType.ERROR);
+    //alert(context, 'You pressed Login', AlertType.info);
     if(_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
+      alert(context, 'Login successfully', AlertType.info);
     } else {
-      alert(context, 'Invalid email, address', AlertType.ERROR);
+      alert(context, 'Login failed', AlertType.error);
     }
   }
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stock_app/screens/home/home.dart';
 import 'package:stock_app/screens/login/login.dart';
 import 'package:stock_app/screens/splash/splash.dart';
 
@@ -13,8 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',       //home: SplashScreen(),
-      home: LoginScreen(),
+      title: 'Flutter Demo',
+      //home: SplashScreen(),
+      //home: LoginScreen(),
+      home: HomeScreen(),
     );
   }
 }
