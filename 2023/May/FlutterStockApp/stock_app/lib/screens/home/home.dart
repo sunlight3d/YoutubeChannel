@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stock_app/screens/home/assets/assets.dart';
 import 'package:stock_app/screens/home/cash_transfer/cash_transfer.dart';
+import 'package:stock_app/screens/home/drawers/left/left.dart';
 import 'package:stock_app/screens/home/market/market.dart';
 import 'package:stock_app/screens/home/trading/trading.dart';
 import 'package:stock_app/screens/home/watchlist/watchlist.dart';
@@ -12,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final List<Widget> _screens = [
     WatchListScreen(),
     MarketScreen(),
@@ -22,7 +24,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //drawer: ,
+      key: _scaffoldKey,
+      drawer: LeftDrawer(),
       body: Column(
         children: [
           SafeArea(
@@ -32,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     IconButton(onPressed: () {
                       //Open drawer
+                      _scaffoldKey.currentState?.openDrawer();
                     }, icon: const Icon(Icons.menu)),
                     Expanded(child: TextField(
                       decoration: InputDecoration(
