@@ -1,30 +1,27 @@
 ﻿<Properties StartupConfiguration="{FB6AAE73-C89F-4212-962B-42D3AE4CA811}|https">
-  <MonoDevelop.Ide.ItemProperties.StockAppWebApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="StockAppWebApi/Repositories/StockRepository.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="StockAppWebApi/Controllers/WatchListController.cs">
     <Files>
-      <File FileName="StockAppWebApi/Repositories/StockRepository.cs" Line="20" Column="1" />
+      <File FileName="StockAppWebApi/Repositories/StockRepository.cs" Line="18" Column="1" />
       <File FileName="StockAppWebApi/Services/StockService.cs" Line="15" Column="1" />
-      <File FileName="StockAppWebApi/Controllers/WatchListController.cs" Line="36" Column="1" />
-      <File FileName="StockAppWebApi/Services/IWatchListService.cs" Line="9" Column="64" />
-      <File FileName="StockAppWebApi/Services/WatchListService.cs" Line="18" Column="39" />
+      <File FileName="StockAppWebApi/Controllers/WatchListController.cs" Line="54" Column="1" />
+      <File FileName="StockAppWebApi/Services/IWatchListService.cs" />
+      <File FileName="StockAppWebApi/Services/WatchListService.cs" Line="24" Column="1" />
       <File FileName="StockAppWebApi/Repositories/IWatchListRepository.cs" Line="9" Column="31" />
-      <File FileName="StockAppWebApi/Repositories/WatchListRepository.cs" Line="35" Column="47" />
-      <File FileName="StockAppWebApi/Repositories/UserRepository.cs" Line="17" Column="41" />
-      <File FileName="StockAppWebApi/Program.cs" Line="28" Column="44" />
-      <File FileName="StockAppWebApi/Controllers/UserController.cs" Line="37" Column="1" />
-      <File FileName="StockAppWebApi/Services/UserService.cs" Line="25" Column="1" />
-      <File FileName="StockAppWebApi/Attributes/JwtAuthorizeAttribute.cs" Line="16" Column="2" />
-      <File FileName="StockAppWebApi/Filters/JwtAuthorizeFilter.cs" Line="52" Column="1" />
-      <File FileName="StockAppWebApi/appsettings.json" Line="1" Column="1" />
-      <File FileName="StockAppWebApi/Extensions/HttpContextExtensions.cs" Line="7" Column="44" />
-      <File FileName="StockAppWebApi/Models/StockAppContext.cs" Line="14" Column="1" />
-      <File FileName="StockAppWebApi/Models/Stock.cs" Line="54" Column="52" />
-      <File FileName="StockAppWebApi/Services/IStockService.cs" Line="8" Column="16" />
-      <File FileName="StockAppWebApi/Models/User.cs" Line="1" Column="1" />
-      <File FileName="StockAppWebApi/Models/WatchList.cs" Line="1" Column="1" />
-      <File FileName="StockAppWebApi/Services/IUserService.cs" Line="9" Column="21" />
+      <File FileName="StockAppWebApi/Repositories/WatchListRepository.cs" Line="40" Column="1" />
+      <File FileName="StockAppWebApi/Repositories/UserRepository.cs" Line="21" Column="10" />
+      <File FileName="StockAppWebApi/Program.cs" />
+      <File FileName="StockAppWebApi/Controllers/UserController.cs" />
+      <File FileName="StockAppWebApi/Services/UserService.cs" />
+      <File FileName="StockAppWebApi/Attributes/JwtAuthorizeAttribute.cs" />
+      <File FileName="StockAppWebApi/Filters/JwtAuthorizeFilter.cs" Line="37" Column="25" />
+      <File FileName="StockAppWebApi/appsettings.json" />
+      <File FileName="StockAppWebApi/Extensions/HttpContextExtensions.cs" />
+      <File FileName="StockAppWebApi/Models/StockAppContext.cs" Line="13" Column="33" />
+      <File FileName="StockAppWebApi/Models/Stock.cs" Line="17" Column="23" />
+      <File FileName="StockAppWebApi/Services/IStockService.cs" />
+      <File FileName="StockAppWebApi/Models/User.cs" Line="11" Column="46" />
+      <File FileName="StockAppWebApi/Models/WatchList.cs" Line="17" Column="9" />
+      <File FileName="StockAppWebApi/Services/IUserService.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -32,13 +29,13 @@
           <Node name="StockAppWebApi" expanded="True">
             <Node name="StockAppWebApi" expanded="True">
               <Node name="Attributes" expanded="True" />
-              <Node name="Controllers" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="WatchListController.cs" selected="True" />
+              </Node>
               <Node name="Extensions" expanded="True" />
               <Node name="Filters" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="Repositories" expanded="True">
-                <Node name="StockRepository.cs" selected="True" />
-              </Node>
+              <Node name="Repositories" expanded="True" />
               <Node name="Services" expanded="True" />
               <Node name="ViewModels" expanded="True" />
             </Node>
@@ -46,26 +43,24 @@
         </State>
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>await _context.Stocks.FindAsync(2)</Value>
-        </State>
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.StockAppWebApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Services/UserService.cs" relfile="StockAppWebApi/Services/UserService.cs" line="46" column="1" />
       <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Controllers/UserController.cs" relfile="StockAppWebApi/Controllers/UserController.cs" line="37" column="1" />
       <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Services/UserService.cs" relfile="StockAppWebApi/Services/UserService.cs" line="25" column="1" />
-      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Filters/JwtAuthorizeFilter.cs" relfile="StockAppWebApi/Filters/JwtAuthorizeFilter.cs" line="43" column="1" />
-      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Filters/JwtAuthorizeFilter.cs" relfile="StockAppWebApi/Filters/JwtAuthorizeFilter.cs" line="32" column="1" />
-      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Filters/JwtAuthorizeFilter.cs" relfile="StockAppWebApi/Filters/JwtAuthorizeFilter.cs" line="52" column="1" />
-      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Filters/JwtAuthorizeFilter.cs" relfile="StockAppWebApi/Filters/JwtAuthorizeFilter.cs" line="36" column="1" />
-      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Controllers/WatchListController.cs" relfile="StockAppWebApi/Controllers/WatchListController.cs" line="36" column="1" />
-      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Services/StockService.cs" relfile="StockAppWebApi/Services/StockService.cs" line="15" column="1" />
-      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Repositories/StockRepository.cs" relfile="StockAppWebApi/Repositories/StockRepository.cs" line="20" column="1" />
-      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Repositories/StockRepository.cs" relfile="StockAppWebApi/Repositories/StockRepository.cs" line="18" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Services/WatchListService.cs" relfile="StockAppWebApi/Services/WatchListService.cs" line="23" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Repositories/WatchListRepository.cs" relfile="StockAppWebApi/Repositories/WatchListRepository.cs" line="37" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Controllers/WatchListController.cs" relfile="StockAppWebApi/Controllers/WatchListController.cs" line="52" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Controllers/WatchListController.cs" relfile="StockAppWebApi/Controllers/WatchListController.cs" line="56" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Repositories/WatchListRepository.cs" relfile="StockAppWebApi/Repositories/WatchListRepository.cs" line="20" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

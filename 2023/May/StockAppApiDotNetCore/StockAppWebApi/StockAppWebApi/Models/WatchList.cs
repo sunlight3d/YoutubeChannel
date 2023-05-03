@@ -8,12 +8,14 @@ namespace StockAppWebApi.Models
     public class WatchList
 	{
         [Key]
-        [ForeignKey("User")]        
-        public int UserId { get; set; }
+        [ForeignKey("User")]
+        [Column("user_id")]
+        public int? UserId { get; set; }
 
         [Key]
         [ForeignKey("Stock")]
-        public int StockId { get; set; }
+        [Column("stock_id")]
+        public int? StockId { get; set; }
 
         public User? User { get; set; }
 
