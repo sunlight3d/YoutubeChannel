@@ -15,8 +15,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final List<Widget> _screens = [
-    WatchListScreen(),
     MarketScreen(),
+    WatchListScreen(),
     TradingScreen(),
     AssetsScreen(),
     CashTransferScreen()
@@ -72,12 +72,12 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.list_sharp),
-            label: 'Watchlist',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.pie_chart),
             label: 'Market',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list_sharp),
+            label: 'Watchlist',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.area_chart),
