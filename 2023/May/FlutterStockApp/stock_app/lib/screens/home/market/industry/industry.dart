@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:stock_app/screens/commons/utilities.dart';
 
-class StockMarket extends StatefulWidget {
-  const StockMarket({Key? key}) : super(key: key);
+class Industry extends StatefulWidget {
+  const Industry({Key? key}) : super(key: key);
 
   @override
-  State<StockMarket> createState() => _StockMarketState();
+  State<Industry> createState() => _IndustryState();
 }
 
-class _StockMarketState extends State<StockMarket> {
+class _IndustryState extends State<Industry> {
   final TextEditingController _controller = TextEditingController();
-  final List<String> _indexes = [
-    'VN30',
-    'HOSE',
-    'HNX',
-    'UPCOM'
+  final List<String> _industries = [
+    'Software & Services',
+    'Technology Hardware & Equipment',
+    'Semiconductors & Semiconductor Equipment',
+    'Pharmaceuticals',
+    'Biotechnology',
+    'Medical Devices & Supplies',
+    'Banking',
+    'Insurance',
+    'Asset Management & Custody Banks',
+    'Automobiles & Components',
+    'Consumer Durables & Apparel',
+    'Retailing',
   ];
-  String _selectedIndex = '';
+  String _selectedIndustry = '';
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,10 +36,10 @@ class _StockMarketState extends State<StockMarket> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: DropdownButton<String>(
                   icon: const Icon(Icons.arrow_downward),
+                  hint: const Text('Select Industry'),
                   borderRadius: const BorderRadius.all(Radius.circular(5)),
-                  hint: const Text('Select Index'),
-                  value: _selectedIndex.isEmpty ? null : _selectedIndex,
-                  items: _indexes.map<DropdownMenuItem<String>>((String value) {
+                  value: _selectedIndustry.isEmpty ? null : _selectedIndustry,
+                  items: _industries.map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -39,7 +47,7 @@ class _StockMarketState extends State<StockMarket> {
                   }).toList(),
                   onChanged: (String? selectedItem) {
                     setState(() {
-                      _selectedIndex = selectedItem ?? '';
+                      _selectedIndustry = selectedItem ?? '';
                     });
                   }
               ),
