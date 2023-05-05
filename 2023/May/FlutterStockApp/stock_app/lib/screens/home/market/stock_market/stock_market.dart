@@ -61,7 +61,7 @@ class _StockMarketState extends State<StockMarket> {
             )
           ],
         ),
-        SingleChildScrollView(
+        Expanded(child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
@@ -88,10 +88,115 @@ class _StockMarketState extends State<StockMarket> {
                   DataCell(Text('11.0')),
                   DataCell(Text('12345')),
                 ]),
+                DataRow(cells: [
+                  DataCell(Text('ZZ')),
+                  DataCell(Text('123.1')),
+                  DataCell(Text('12.3')),
+                  DataCell(Text('11.0')),
+                  DataCell(Text('12345')),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('ZZ')),
+                  DataCell(Text('123.1')),
+                  DataCell(Text('12.3')),
+                  DataCell(Text('11.0')),
+                  DataCell(Text('12345')),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('ZZ')),
+                  DataCell(Text('123.1')),
+                  DataCell(Text('12.3')),
+                  DataCell(Text('11.0')),
+                  DataCell(Text('12345')),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('ZZ')),
+                  DataCell(Text('123.1')),
+                  DataCell(Text('12.3')),
+                  DataCell(Text('11.0')),
+                  DataCell(Text('12345')),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('ZZ')),
+                  DataCell(Text('123.1')),
+                  DataCell(Text('12.3')),
+                  DataCell(Text('11.0')),
+                  DataCell(Text('12345')),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('ZZ')),
+                  DataCell(Text('123.1')),
+                  DataCell(Text('12.3')),
+                  DataCell(Text('11.0')),
+                  DataCell(Text('12345')),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('ZZ')),
+                  DataCell(Text('123.1')),
+                  DataCell(Text('12.3')),
+                  DataCell(Text('11.0')),
+                  DataCell(Text('12345')),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('ZZ')),
+                  DataCell(Text('123.1')),
+                  DataCell(Text('12.3')),
+                  DataCell(Text('11.0')),
+                  DataCell(Text('12345')),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('ZZ')),
+                  DataCell(Text('123.1')),
+                  DataCell(Text('12.3')),
+                  DataCell(Text('11.0')),
+                  DataCell(Text('12345')),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('ZZ')),
+                  DataCell(Text('123.1')),
+                  DataCell(Text('12.3')),
+                  DataCell(Text('11.0')),
+                  DataCell(Text('12345')),
+                ]),DataRow(cells: [
+                  DataCell(Text('ZZ')),
+                  DataCell(Text('123.1')),
+                  DataCell(Text('12.3')),
+                  DataCell(Text('11.0')),
+                  DataCell(Text('12345')),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('ZZ')),
+                  DataCell(Text('123.1')),
+                  DataCell(Text('12.3')),
+                  DataCell(Text('11.0')),
+                  DataCell(Text('12345')),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('ZZ')),
+                  DataCell(Text('123.1')),
+                  DataCell(Text('12.3')),
+                  DataCell(Text('11.0')),
+                  DataCell(Text('12345')),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('ZZ')),
+                  DataCell(Text('123.1')),
+                  DataCell(Text('12.3')),
+                  DataCell(Text('11.0')),
+                  DataCell(Text('12345')),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('ZZ')),
+                  DataCell(Text('123.1')),
+                  DataCell(Text('12.3')),
+                  DataCell(Text('11.0')),
+                  DataCell(Text('12345')),
+                ]),
+                
               ],
             ),
           ),
-        ),
+        ),)
       ],
     );
   }
