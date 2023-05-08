@@ -1,8 +1,47 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
-class SplashScreen extends StatelessWidget {
-  // final int x;
-  // Splash({required this.x});
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stock_app/screens/home/home.dart';
+import 'package:stock_app/screens/login/login.dart';
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Timer(const Duration(seconds: 2), () {
+      checkLoginStatus(context);
+    });
+  }
+  Future<void> checkLoginStatus(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+    await Future.delayed(const Duration(seconds: 1));
+    if (isLoggedIn) {
+      // Đã đăng nhập, chuyển sang màn hình HomeScreen
+      if (context.mounted) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
+      }
+    } else {
+      // Chưa đăng nhập, chuyển sang màn hình LoginScreen
+      if (context.mounted) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => LoginScreen()),
+        );
+      }
+
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -10,7 +49,7 @@ class SplashScreen extends StatelessWidget {
       body: Stack(
         children: [
           Image.asset(
-              'assets/images/background.png',
+            'assets/images/background.png',
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,

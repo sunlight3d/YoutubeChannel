@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   infinite_scroll_tab_view: 1.0.3
   syncfusion_flutter_datepicker: ^21.2.3
+  shared_preferences: ^2.0.13
 
 dev_dependencies:
   flutter_test:

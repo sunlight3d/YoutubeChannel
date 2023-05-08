@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stock_app/screens/commons/utilities.dart';
+import 'package:stock_app/screens/home/home.dart';
 import 'package:stock_app/validators/EmailValidator.dart';
 import 'package:stock_app/validators/PasswordValidator.dart';
 
@@ -17,7 +19,14 @@ class _LoginScreenState extends State<LoginScreen> {
     //alert(context, 'You pressed Login', AlertType.info);
     if(_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      alert(context, 'Login successfully', AlertType.info);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('isLoggedIn', true);
+      //alert(context, 'Login successfully', AlertType.info);
+      if(context.mounted) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
+      }
     } else {
       alert(context, 'Login failed', AlertType.error);
     }
