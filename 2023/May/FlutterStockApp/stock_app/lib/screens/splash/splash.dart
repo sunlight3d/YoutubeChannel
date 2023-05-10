@@ -1,9 +1,11 @@
+/*
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stock_app/screens/home/home.dart';
 import 'package:stock_app/screens/login/login.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -81,3 +83,4 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
+*/
