@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace StockAppWebApi.Models
 {
@@ -17,8 +18,10 @@ namespace StockAppWebApi.Models
         [Column("stock_id")]
         public int? StockId { get; set; }
 
+        [JsonIgnore]
         public User? User { get; set; }
 
+        [JsonIgnore]
         public Stock? Stock { get; set; }
     }
 }

@@ -28,6 +28,21 @@ namespace StockAppWebApi.Controllers
             _stockService = stockService;            
         }
 
+        [HttpGet]
+        [JwtAuthorize]
+        public async Task<IActionResult> GetMyWatchList(int stockId) {
+            // Lấy UserId từ context
+            int userId = HttpContext.GetUserId();
+            // Kiểm tra người dùng và cổ phiếu tồn tại
+            var user = await _userService.GetUserById(userId);
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
+            var stocks = await _watchlistService.GetWatchListByUserId(userId);
+            return Ok(stocks);
+
+        }
         [HttpPost("AddStockToWatchlist/{stockId}")]
         [JwtAuthorize]        
         public async Task<IActionResult> AddStockToWatchlist(int stockId)

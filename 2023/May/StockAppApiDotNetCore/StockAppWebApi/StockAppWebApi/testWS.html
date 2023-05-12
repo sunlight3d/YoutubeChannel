@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+
+    <h2>Use JavaScript to Change Text</h2>
+    <p>This example writes "Hello JavaScript!" into an HTML element with id="demo":</p>
+
+    <!--<p id="x-value"></p>
+    <p id="y-value"></p>-->
+    <table id="table-body"></table>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+            table td {
+                border: 1px solid black;
+                padding: 8px;
+            }
+    </style>
+    <script>/*
+        const socket = new WebSocket('wss://localhost:7036/api/ws');
+        socket.onopen = () => {
+            debugger
+            console.log('Connected to the server via WebSocket');
+        };
+
+        socket.onmessage = (event) => {
+            debugger
+            const data = JSON.parse(event.data);
+            const x = data.x ?? 0;
+            const y = data.y ?? 0;
+            console.log(`x = ${x}, y = ${y}`)
+            // Hiển thị giá trị x và y trên giao diện
+            document.getElementById('x-value').innerText = `X: ${x}`;
+            document.getElementById('y-value').innerText = `Y: ${y}`;
+        };
+
+        socket.onclose = () => {
+            console.log('Connection closed');
+        };
+        */
+        const page = 1;
+        const limit = 10;
+        const socket = new WebSocket(`wss://localhost:7036/api/ws/quote?page=${page}&limit=${limit}`);
+        socket.onopen = () => {
+            debugger
+            console.log('Connected to the server via WebSocket');
+        };
+
+        socket.onmessage = (event) => {
+            debugger
+            const quotes = JSON.parse(event.data);
+            // Lấy thẻ <tbody> của bảng
+            var tableBody = document.getElementById("table-body");
+
+            // Xóa toàn bộ các hàng hiện tại trong bảng
+            while (tableBody.firstChild) {
+                tableBody.removeChild(tableBody.firstChild);
+            }
+
+            // Duyệt qua danh sách đối tượng và tạo các hàng trong bảng
+            quotes.forEach(function (quote) {
+                // Tạo một hàng mới trong bảng
+                var row = document.createElement("tr");
+
+                // Tạo các ô trong hàng
+                var quoteIdCell = document.createElement("td");
+                quoteIdCell.textContent = quote.quoteId;
+                row.appendChild(quoteIdCell);
+
+                var symbolCell = document.createElement("td");
+                symbolCell.textContent = quote.Symbol;
+                row.appendChild(symbolCell);
+
+                var companyNameCell = document.createElement("td");
+                companyNameCell.textContent = quote.CompanyName;
+                row.appendChild(companyNameCell);
+
+                var indexNameCell = document.createElement("td");
+                indexNameCell.textContent = quote.IndexName;
+                row.appendChild(indexNameCell);
+
+                var indexSymbolCell = document.createElement("td");
+                indexSymbolCell.textContent = quote.IndexSymbol;
+                row.appendChild(indexSymbolCell);
+
+                var marketCapCell = document.createElement("td");
+                marketCapCell.textContent = quote.MarketCap;
+                row.appendChild(marketCapCell);
+
+                var sectorEnCell = document.createElement("td");
+                sectorEnCell.textContent = quote.SectorEn;
+                row.appendChild(sectorEnCell);
+
+                var industryEnCell = document.createElement("td");
+                industryEnCell.textContent = quote.IndustryEn;
+                row.appendChild(industryEnCell);
+
+                var sectorCell = document.createElement("td");
+                sectorCell.textContent = quote.Sector;
+                row.appendChild(sectorCell);
+
+                var industryCell = document.createElement("td");
+                industryCell.textContent = quote.Industry;
+                row.appendChild(industryCell);
+
+                var stockTypeCell = document.createElement("td");
+                stockTypeCell.textContent = quote.StockType;
+                row.appendChild(stockTypeCell);
+
+                var priceCell = document.createElement("td");
+                priceCell.textContent = quote.Price;
+                row.appendChild(priceCell);
+
+                var changeCell = document.createElement("td");
+                changeCell.textContent = quote.Change;
+                row.appendChild(changeCell);
+
+                var percentChangeCell = document.createElement("td");
+                percentChangeCell.textContent = quote.PercentChange;
+                row.appendChild(percentChangeCell);
+
+                var volumeCell = document.createElement("td");
+                volumeCell.textContent = quote.Volume;
+                row.appendChild(volumeCell);
+
+                var timeStampCell = document.createElement("td");
+                timeStampCell.textContent = quote.TimeStamp;
+                row.appendChild(timeStampCell);
+
+                // Thêm hàng vào tbody của bảng
+                tableBody.appendChild(row);
+            });
+        };
+
+        socket.onclose = () => {
+            console.log('Connection closed');
+        };
+    </script>
+
+</body>
+</html>

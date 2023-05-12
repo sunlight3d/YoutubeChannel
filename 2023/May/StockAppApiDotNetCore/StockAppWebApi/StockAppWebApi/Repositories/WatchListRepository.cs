@@ -31,6 +31,13 @@ namespace StockAppWebApi.Repositories
                 await _context.SaveChangesAsync();//COMMIT
             }
         }
+        public async Task<List<Stock?>?> GetWatchListByUserId(int userId) {
+            return await _context.WatchLists
+                .Where(wl => wl.UserId == userId)
+                .Include(wl => wl.Stock)
+                .Select(wl => wl.Stock)
+                .ToListAsync();
+        }
 
         public async Task<WatchList?> GetWatchlist(int userId, int stockId)
         {
