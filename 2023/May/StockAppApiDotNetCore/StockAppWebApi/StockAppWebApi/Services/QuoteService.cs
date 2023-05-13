@@ -11,7 +11,10 @@ namespace StockAppWebApi.Repositories
             _quoteRepository = quoteRepository;
         }
 
-        public async Task<List<RealtimeQuote>?> GetRealtimeQuotes(int page, int limit)
+        public async Task<List<RealtimeQuote>?> GetRealtimeQuotes(
+            int page, int limit,
+            string sector,
+            string industry)
         {
             return await _quoteRepository.GetRealtimeQuotes(page, limit);            
         }

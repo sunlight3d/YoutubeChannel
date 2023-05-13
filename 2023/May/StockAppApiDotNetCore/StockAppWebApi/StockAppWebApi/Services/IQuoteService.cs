@@ -5,6 +5,10 @@ namespace StockAppWebApi.Repositories
 {
 	public interface IQuoteService
 	{
-		Task<List<RealtimeQuote>?> GetRealtimeQuotes(int page, int limit);
+		Task<List<RealtimeQuote>?> GetRealtimeQuotes(
+			int page,
+			int limit,
+			string sector,
+            string industry);
 	}
 }

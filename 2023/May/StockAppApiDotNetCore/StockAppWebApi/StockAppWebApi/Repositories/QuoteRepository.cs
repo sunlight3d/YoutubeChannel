@@ -12,13 +12,25 @@ namespace StockAppWebApi.Repositories
         {
             _context = context;
         }
-        public async Task<List<RealtimeQuote>?> GetRealtimeQuotes(int page, int limit)
+        public async Task<List<RealtimeQuote>?> GetRealtimeQuotes(
+            int page,
+            int limit,            
+            string sector,
+            string industry)
         {
-            var quotes = await _context.RealtimeQuotes
+            var query = _context.RealtimeQuotes
                             .Skip((page - 1) * limit) // Bỏ qua số lượng bản ghi trước trang hiện tại
-                            .Take(limit) // Lấy số lượng bản ghi tối đa trên mỗi trang
-                            .ToListAsync();
+                            .Take(limit); // Lấy số lượng bản ghi tối đa trên mỗi trang
+            if (!string.IsNullOrEmpty(sector))
+            {
+                query = query.Where(q => q.Sector == sector);
+            }
 
+            if (!string.IsNullOrEmpty(industry))
+            {
+                query = query.Where(q => q.Industry == industry);
+            }
+            var quotes = await query.ToListAsync();
             return quotes;
         }
     }
