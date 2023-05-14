@@ -1,0 +1,59 @@
+﻿<Properties StartupConfiguration="{FB6AAE73-C89F-4212-962B-42D3AE4CA811}|https">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.StockAppWebApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="StockAppWebApi/Repositories/OrderRepository.cs">
+    <Files>
+      <File FileName="StockAppWebApi/Repositories/OrderRepository.cs" Line="33" Column="20" />
+      <File FileName="StockAppWebApi/Repositories/IOrderRepository.cs" Line="14" Column="1" />
+      <File FileName="StockAppWebApi/Controllers/OrderController.cs" Line="37" Column="1" />
+      <File FileName="StockAppWebApi/Services/IOrderService.cs" Line="13" Column="1" />
+      <File FileName="StockAppWebApi/Services/OrderService.cs" Line="25" Column="55" />
+      <File FileName="StockAppWebApi/Models/StockAppContext.cs" Line="27" Column="61" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="StockAppWebApi" expanded="True">
+            <Node name="StockAppWebApi" expanded="True">
+              <Node name="Attributes" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Extensions" expanded="True" />
+              <Node name="Filters" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Repositories" expanded="True">
+                <Node name="OrderRepository.cs" selected="True" />
+              </Node>
+              <Node name="Services" expanded="True" />
+              <Node name="ViewModels" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>order</Value>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Services/UserService.cs" relfile="StockAppWebApi/Services/UserService.cs" line="46" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Controllers/UserController.cs" relfile="StockAppWebApi/Controllers/UserController.cs" line="37" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Services/UserService.cs" relfile="StockAppWebApi/Services/UserService.cs" line="25" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Services/WatchListService.cs" relfile="StockAppWebApi/Services/WatchListService.cs" line="23" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Repositories/WatchListRepository.cs" relfile="StockAppWebApi/Repositories/WatchListRepository.cs" line="44" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Controllers/WatchListController.cs" relfile="StockAppWebApi/Controllers/WatchListController.cs" line="67" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Repositories/WatchListRepository.cs" relfile="StockAppWebApi/Repositories/WatchListRepository.cs" line="20" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Controllers/WebSocketController.cs" relfile="StockAppWebApi/Controllers/WebSocketController.cs" line="23" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Controllers/WebSocketController.cs" relfile="StockAppWebApi/Controllers/WebSocketController.cs" line="37" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Services/StockService.cs" relfile="StockAppWebApi/Services/StockService.cs" line="16" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Controllers/OrderController.cs" relfile="StockAppWebApi/Controllers/OrderController.cs" line="37" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Repositories/OrderRepository.cs" relfile="StockAppWebApi/Repositories/OrderRepository.cs" line="34" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Repositories/OrderRepository.cs" relfile="StockAppWebApi/Repositories/OrderRepository.cs" line="33" column="1" />
+      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Repositories/OrderRepository.cs" relfile="StockAppWebApi/Repositories/OrderRepository.cs" line="37" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>

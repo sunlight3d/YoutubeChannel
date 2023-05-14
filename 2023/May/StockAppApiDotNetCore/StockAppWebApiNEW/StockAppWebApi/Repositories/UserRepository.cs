@@ -85,7 +85,7 @@ namespace StockAppWebApi.Repositories
                         (new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
-                var jwtToken = tokenHandler.WriteToken(token);
+                var jwtToken = tokenHandler.WriteToken(token);                
                 return jwtToken;
             }
             else {

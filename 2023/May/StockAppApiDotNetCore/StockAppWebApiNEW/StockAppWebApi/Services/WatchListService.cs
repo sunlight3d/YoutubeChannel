@@ -22,6 +22,10 @@ namespace StockAppWebApi.Services
         {
             return await _repository.GetWatchlist(userId, stockId);
         }
+
+        public async Task<List<Stock?>?> GetWatchListByUserId(int userId) {
+            return await _repository.GetWatchListByUserId(userId);
+        }
     }
 
 }

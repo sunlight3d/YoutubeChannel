@@ -5,7 +5,7 @@ namespace StockAppWebApi.Services
 {
     public interface IOrderService
     {
-        Task<Order> PlaceOrder(Order order);
+        Task<Order> PlaceOrder(OrderViewModel orderViewModel);
         Task<List<Order>> GetOrderBook();
     }
 }

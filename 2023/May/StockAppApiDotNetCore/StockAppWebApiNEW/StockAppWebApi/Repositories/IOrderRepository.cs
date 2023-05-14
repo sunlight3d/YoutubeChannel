@@ -5,7 +5,7 @@ namespace StockAppWebApi.Repositories
 {
     public interface IOrderRepository
     {
-        Task<Order> CreateOrder(Order order);
+        Task<Order> CreateOrder(OrderViewModel orderViewModel);
         Task<List<Order>> GetOrderBook();
     }
 

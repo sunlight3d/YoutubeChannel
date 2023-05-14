@@ -33,6 +33,7 @@ namespace StockAppWebApi.Controllers
                 {
                     return NotFound("User not found.");
                 }
+                orderViewModel.UserId = userId;
                 var createdOrder = await _orderService.PlaceOrder(orderViewModel);
                 return Ok(createdOrder);
             }

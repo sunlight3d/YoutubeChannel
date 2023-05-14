@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    const socket = new WebSocket('wss://localhost:7036/api/ws');
+        debugger
+        socket.onopen = () => {
+            debugger
+            console.log('Connected to the server via WebSocket');
+        };
+
+        socket.onmessage = (event) => {
+            debugger
+            const data = JSON.parse(event.data);
+            const x = data.x ?? 0;
+            const y = data.y ?? 0;
+            console.log(`x = ${x}, y = ${y}`)
+            // Hiển thị giá trị x và y trên giao diện
+            document.getElementById('x-value').innerText = `X: ${x}`;
+            document.getElementById('y-value').innerText = `Y: ${y}`;
+        };
+        socket.onclose = () => {
+            debugger
+            console.log('Connection closed');
+        };
+</script>
+<body>
+    <h1>Test Websocket, show x, y realtime</h1>
+    <p id="x-value"></p>
+    <p id="y-value"></p>
+</body>
+</html>

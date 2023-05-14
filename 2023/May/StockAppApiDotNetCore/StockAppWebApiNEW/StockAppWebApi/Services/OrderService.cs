@@ -13,16 +13,16 @@ namespace StockAppWebApi.Services
             _orderRepository = orderRepository;
         }
 
-        public async Task<Order> PlaceOrder(Order order)
+        public async Task<Order> PlaceOrder(OrderViewModel orderViewModel)
         {
-            if (order.Quantity <= 0)
+            if (orderViewModel.Quantity <= 0)
             {
                 throw new ArgumentException("Quantity must be greater than 0");
             }
 
             // Perform additional validations or business logic if needed
 
-            return await _orderRepository.CreateOrder(order);
+            return await _orderRepository.CreateOrder(orderViewModel);
         }
 
         public async Task<List<Order>> GetOrderBook()
