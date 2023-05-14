@@ -15,12 +15,15 @@ namespace StockAppWebApi.Models
         public DbSet<RealtimeQuote> RealtimeQuotes { get; set; }
         public DbSet<Quote> Quotes { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<WatchList>()
                 .HasKey(w => new { w.UserId, w.StockId });
+            modelBuilder.Entity<Order>()
+                .ToTable(table => table.HasTrigger("trigger_orders"));
         }
     }
 }
