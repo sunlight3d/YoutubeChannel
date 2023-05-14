@@ -16,7 +16,11 @@ namespace StockAppWebApi.Repositories
             string sector,
             string industry)
         {
-            return await _quoteRepository.GetRealtimeQuotes(page, limit);            
+            return await _quoteRepository.GetRealtimeQuotes(page, limit, sector, industry);            
+        }
+        public async Task<List<Quote>> GetHistoricalQuotes(int days)
+        {
+            return await _quoteRepository.GetHistoricalQuotes(days);
         }
     }
 }

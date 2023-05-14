@@ -33,6 +33,26 @@ namespace StockAppWebApi.Repositories
             var quotes = await query.ToListAsync();
             return quotes;
         }
+
+        public async Task<List<Quote>> GetHistoricalQuotes(int days)
+        {
+            var fromDate = DateTime.Now.Date.AddDays(-days);
+            var toDate = DateTime.Now.Date;
+
+            var historicalQuotes = await _context.Quotes
+                .Where(q => q.TimeStamp >= fromDate && q.TimeStamp <= toDate)
+                .GroupBy(q => q.TimeStamp.Date) // Nhóm theo ngày
+                .Select(g => new Quote
+                {
+                    TimeStamp = g.Key,
+                    Price = g.Average(q => q.Price), // Lấy giá trị trung bình của cùng một ngày
+                                                     // Các thuộc tính khác của Quote nếu cần thiết
+                })
+                .OrderBy(q => q.TimeStamp) // Sắp xếp theo thứ tự tăng dần về ngày tháng
+                .ToListAsync();
+            return historicalQuotes;
+        }
+
     }
 }
 

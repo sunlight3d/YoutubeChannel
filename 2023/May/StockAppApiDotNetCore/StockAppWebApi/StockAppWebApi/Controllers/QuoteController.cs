@@ -10,7 +10,7 @@ using System.Text.Json;
 namespace StockAppWebApi.Controllers
 {
     [ApiController]
-    [Route("api/ws/[controller]")]
+    [Route("api/[controller]")]
     public class QuoteController : ControllerBase
     {
         private readonly IQuoteService _quoteService;
@@ -18,8 +18,12 @@ namespace StockAppWebApi.Controllers
         {
             _quoteService = quoteService;
         }
-        [HttpGet]
-        public async Task GetRealtimeQuotes(int page = 1, int limit = 10) { 
+        [HttpGet("ws")]
+        public async Task GetRealtimeQuotes(
+            int page = 1, int limit = 10,
+            string sector="",
+            string industry = ""
+            ) { 
             if (HttpContext.WebSockets.IsWebSocketRequest)
             {
                 using var webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
@@ -27,7 +31,8 @@ namespace StockAppWebApi.Controllers
                 while (webSocket.State == WebSocketState.Open)
                 {
 
-                    List<RealtimeQuote>? quotes =  await _quoteService.GetRealtimeQuotes(page, limit);
+                    List<RealtimeQuote>? quotes =  await _quoteService
+                                                    .GetRealtimeQuotes(page, limit, sector, industry);
                     string jsonString = JsonSerializer.Serialize(quotes);
                     var buffer = Encoding.UTF8.GetBytes(jsonString);
                     await webSocket.SendAsync(new ArraySegment<byte>(buffer),
@@ -42,6 +47,12 @@ namespace StockAppWebApi.Controllers
             {
                 HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
             }
+        }
+        [HttpGet("historical")]
+        public async Task<IActionResult> GetHistoricalQuotes(int days)
+        {
+            var historicalQuotes = await _quoteService.GetHistoricalQuotes(days);
+            return Ok(historicalQuotes);
         }
     }
 }

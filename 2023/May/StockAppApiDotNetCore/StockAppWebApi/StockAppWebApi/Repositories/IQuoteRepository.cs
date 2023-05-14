@@ -10,7 +10,8 @@ namespace StockAppWebApi.Repositories
             int limit,
             string sector,
             string industry);
-        
+        Task<List<Quote>> GetHistoricalQuotes(int days);
     }
+
 }
 

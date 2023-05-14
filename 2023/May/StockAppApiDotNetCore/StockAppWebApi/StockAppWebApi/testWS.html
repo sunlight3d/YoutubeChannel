@@ -42,7 +42,7 @@
         */
         const page = 1;
         const limit = 10;
-        const socket = new WebSocket(`wss://localhost:7036/api/ws/quote?page=${page}&limit=${limit}`);
+        const socket = new WebSocket(`wss://localhost:7036/api/quote/ws?page=${page}&limit=${limit}`);
         socket.onopen = () => {
             debugger
             console.log('Connected to the server via WebSocket');
