@@ -23,6 +23,7 @@ namespace StockAppWebApi.Controllers
                     int x = random.Next(1, 100);
                     int y = random.Next(1, 100);
                     var buffer = Encoding.UTF8.GetBytes($"{{ \"x\": {x}, \"y\": {y} }}");
+                    Console.WriteLine($"x : {x}, y: {y}");
                     await webSocket.SendAsync(
                         new ArraySegment<byte>(buffer),
                         WebSocketMessageType.Text, true, CancellationToken.None);
