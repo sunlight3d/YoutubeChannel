@@ -9,15 +9,15 @@ def insert_10k_records():
     db.cursor.execute('SELECT COUNT(*) FROM quotes')
     row = db.cursor.fetchone()
     count = row[0]
-    if count >= 10000:
+    if count >= 100000:
         print('Đã có đủ 100000 bản ghi.')
         return
 
-    # Thêm 10000 bản ghi fake
+    # Thêm 100000 bản ghi fake
     start_date = datetime(2019, 1, 1)
     end_date = datetime(2023, 4, 30)
     delta = end_date - start_date
-    for i in range(10000):
+    for i in range(100000):
         stock_id = random.randint(1, 28)
         price = round(random.uniform(1, 100), 2)
         change = round(random.uniform(-10, 10), 2)
