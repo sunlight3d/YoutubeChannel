@@ -18,7 +18,7 @@ namespace StockAppWebApi.Repositories
         {
             return await _quoteRepository.GetRealtimeQuotes(page, limit, sector, industry);            
         }
-        public async Task<List<Quote>> GetHistoricalQuotes(int days)
+        public async Task<List<Quote>> GetHistoricalQuotes(int days, int stockId)
         {
             return await _quoteRepository.GetHistoricalQuotes(days);
         }

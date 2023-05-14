@@ -49,7 +49,7 @@ namespace StockAppWebApi.Controllers
             }
         }
         [HttpGet("historical")]
-        public async Task<IActionResult> GetHistoricalQuotes(int days)
+        public async Task<IActionResult> GetHistoricalQuotes(int days, int stockId)
         {
             var historicalQuotes = await _quoteService.GetHistoricalQuotes(days);
             return Ok(historicalQuotes);

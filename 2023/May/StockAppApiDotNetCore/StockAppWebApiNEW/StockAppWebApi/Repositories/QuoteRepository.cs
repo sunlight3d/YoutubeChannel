@@ -34,24 +34,28 @@ namespace StockAppWebApi.Repositories
             return quotes;
         }
 
-        public async Task<List<Quote>> GetHistoricalQuotes(int days)
+        public async Task<List<Quote>> GetHistoricalQuotes(int days, int stockId)
         {
             var fromDate = DateTime.Now.Date.AddDays(-days);
             var toDate = DateTime.Now.Date;
 
             var historicalQuotes = await _context.Quotes
-                .Where(q => q.TimeStamp >= fromDate && q.TimeStamp <= toDate)
+                .Where(q => q.TimeStamp >= fromDate 
+                    && q.TimeStamp <= toDate 
+                        && q.stock_id == stockId) // Kiểm tra stock_id
                 .GroupBy(q => q.TimeStamp.Date) // Nhóm theo ngày
                 .Select(g => new Quote
                 {
                     TimeStamp = g.Key,
                     Price = g.Average(q => q.Price), // Lấy giá trị trung bình của cùng một ngày
-                                                     // Các thuộc tính khác của Quote nếu cần thiết
+                    // Các thuộc tính khác của Quote nếu cần thiết
                 })
                 .OrderBy(q => q.TimeStamp) // Sắp xếp theo thứ tự tăng dần về ngày tháng
                 .ToListAsync();
+
             return historicalQuotes;
         }
+
 
     }
 }
