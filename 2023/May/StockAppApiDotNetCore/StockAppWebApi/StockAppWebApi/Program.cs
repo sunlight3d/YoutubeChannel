@@ -28,8 +28,15 @@ builder.Services.AddScoped<IWatchListService, WatchListService>();
 
 builder.Services.AddScoped<IStockRepository, StockRepository>();
 builder.Services.AddScoped<IStockService, StockService>();
+
 builder.Services.AddScoped<IQuoteRepository, QuoteRepository>();
 builder.Services.AddScoped<IQuoteService, QuoteService>();
+
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+
+builder.Services.AddScoped<ICWRepository, CWRepository>();
+builder.Services.AddScoped<ICWService, CWService>();
 
 builder.Services.AddScoped<JwtAuthorizeFilter>();
 

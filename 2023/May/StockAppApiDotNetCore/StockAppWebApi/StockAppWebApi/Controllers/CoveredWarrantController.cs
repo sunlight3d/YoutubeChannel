@@ -14,7 +14,6 @@ namespace StockAppWebApi.Controllers
         {
             _cwService = cwService;
         }
-
         [HttpGet("stock/{stockId}")]
         public async Task<IActionResult> GetCoveredWarrantsByStockId(int stockId)
         {
@@ -30,6 +29,5 @@ namespace StockAppWebApi.Controllers
             }
         }
     }
-
 }
 

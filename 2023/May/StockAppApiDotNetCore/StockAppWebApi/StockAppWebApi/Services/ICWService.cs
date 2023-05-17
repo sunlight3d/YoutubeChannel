@@ -3,8 +3,8 @@ using StockAppWebApi.Models;
 
 namespace StockAppWebApi.Services
 {
-    public interface ICWService
-    {
+	public interface ICWService
+	{
         Task<List<CoveredWarrant>> GetCoveredWarrantsByStockId(int stockId);
     }
 }

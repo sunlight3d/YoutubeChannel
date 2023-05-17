@@ -4,8 +4,8 @@ using StockAppWebApi.Repositories;
 
 namespace StockAppWebApi.Services
 {
-    public class CWService : ICWService
-    {
+	public class CWService:ICWService
+	{
         private readonly ICWRepository _cwRepository;
 
         public CWService(ICWRepository cwRepository)

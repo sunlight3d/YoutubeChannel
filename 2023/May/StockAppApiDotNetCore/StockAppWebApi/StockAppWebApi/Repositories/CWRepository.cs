@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using StockAppWebApi.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StockAppWebApi.Repositories
 {
-    public class CWRepository : ICWRepository
+	public class CWRepository: ICWRepository
     {
         private readonly StockAppContext _context;
 
@@ -18,11 +17,11 @@ namespace StockAppWebApi.Repositories
         }
 
         public async Task<List<CoveredWarrant>> GetCoveredWarrantsByStockId(int stockId)
-        {            
+        {
             return await _context.CoveredWarrants
-                .Where(cw => cw.UnderlyingAssetId == stockId)
-                .ToListAsync();
-
+                    .Where(cw => cw.UnderlyingAssetId == stockId)
+                    .Include(cw => cw.Stock)
+                    .ToListAsync();
         }
     }
 }

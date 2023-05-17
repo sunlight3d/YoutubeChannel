@@ -27,7 +27,7 @@ namespace StockAppWebApi.Repositories
             };
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
-            return order;//có thể sẽ ko lấy đc orderId, sẽ test thử
+            return order;//lấy đc orderId, YES !
         }
     }
 }

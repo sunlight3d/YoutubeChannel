@@ -16,6 +16,7 @@ namespace StockAppWebApi.Models
         public DbSet<Quote> Quotes { get; set; }
 
         public DbSet<Order> Orders { get; set; }
+        public DbSet<CoveredWarrant> CoveredWarrants { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

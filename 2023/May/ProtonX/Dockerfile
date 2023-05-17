@@ -12,3 +12,5 @@ RUN pip install --no-cache-dir numpy tensorflow tensorflow_hub matplotlib pillow
 
 # Khởi chạy script Python
 CMD [ "python", "your_script.py" ]
+#docker build -t inception_net:1.0 .
+#docker run -it --rm inception_net:1.0

@@ -6,7 +6,7 @@ namespace StockAppWebApi.Models
 {
     [Table("covered_warrants")]
     public class CoveredWarrant
-    {
+	{
         [Key]
         [Column("warrant_id")]
         public int WarrantId { get; set; }
@@ -36,6 +36,5 @@ namespace StockAppWebApi.Models
 
         public Stock? Stock { get; set; }
     }
-
 }
 
