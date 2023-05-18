@@ -1,14 +1,16 @@
 import 'package:stock_app/models/RealtimeQuote.dart';
 import 'package:web_socket_channel/io.dart';
+import 'dart:convert';
 
 class RealtimeQuoteRepository {
   static Stream<List<RealtimeQuote>> getRealtimeQuoteList(int page, int limit) {
     final channel = IOWebSocketChannel.connect(
       'wss://192.168.1.13:7036/api/Quote/ws?page=$page&limit=$limit',
     );
-
     return channel.stream.map((data) {
-      final quotesData = List<dynamic>.from(data);
+      print('aaa');
+      //final quotesData = List<dynamic>.from(data);
+      List<dynamic> quotesData = jsonDecode(data);
       return quotesData
           .map((quoteData) => RealtimeQuote(
         quoteId: quoteData['quoteId'],

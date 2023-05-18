@@ -5,10 +5,19 @@ import 'package:stock_app/screens/login/login.dart';
 import 'package:stock_app/screens/splash/splash.dart';
 //import 'package:stock_app/screens/splash/splash.dart';
 import 'package:splash_screen_package/splash_screen_package.dart';
+import 'dart:io';
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
+  HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }
 

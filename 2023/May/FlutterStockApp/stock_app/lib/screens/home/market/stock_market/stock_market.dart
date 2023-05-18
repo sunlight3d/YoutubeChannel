@@ -78,15 +78,18 @@ class _StockMarketState extends State<StockMarket> {
                   ],
                   rows: quoteList
                       .map(
-                        (quote) => DataRow(
-                      cells: [
-                        DataCell(Text(quote.symbol ?? '')),
-                        DataCell(Text(quote.companyName ?? '')),
-                        DataCell(Text(quote.price.toString())),
-                        DataCell(Text(quote.change.toString())),
-                        DataCell(Text(quote.volume.toString())),
-                      ],
-                    ),
+                        (quote) {
+                          print('haha');
+                          return DataRow(
+                            cells: [
+                              DataCell(Text(quote.symbol ?? '')),
+                              DataCell(Text(quote.companyName ?? '')),
+                              DataCell(Text(quote.price.toString())),
+                              DataCell(Text(quote.change.toString())),
+                              DataCell(Text(quote.volume.toString())),
+                            ],
+                          );
+                        },
                   )
                       .toList(),
                 ),
