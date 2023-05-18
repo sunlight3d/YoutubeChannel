@@ -23,6 +23,7 @@ class _StockMarketState extends State<StockMarket> {
   Stream<List<RealtimeQuote>>? _quoteStream;
   int _page = 1;
   int _limit = 20;
+  bool _isConnected = true;
 
   @override
   void initState() {
@@ -92,7 +93,20 @@ class _StockMarketState extends State<StockMarket> {
               ),
             ),);
           } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
+            // Xử lý lỗi kết nối
+            if (!_isConnected) {
+              return Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Gọi hàm để làm mới dữ liệu
+                    _quoteStream = RealtimeQuoteRepository.getRealtimeQuoteList(_page, _limit);
+                  },
+                  child: Text('Refresh'),
+                ),
+              );
+            } else {
+              return Text('Error: ${snapshot.error}');
+            }
           } else {
             return const Center(child: CircularProgressIndicator());
           }

@@ -4,7 +4,7 @@ import 'package:web_socket_channel/io.dart';
 class RealtimeQuoteRepository {
   static Stream<List<RealtimeQuote>> getRealtimeQuoteList(int page, int limit) {
     final channel = IOWebSocketChannel.connect(
-      'wss://localhost:7036/api/Quote/ws?page=$page&limit=$limit',
+      'wss://192.168.1.13:7036/api/Quote/ws?page=$page&limit=$limit',
     );
 
     return channel.stream.map((data) {
