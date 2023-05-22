@@ -1,22 +1,20 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stock_app/firebase/firebase_options.dart';
+import 'package:stock_app/firebase_options.dart';
 import 'package:stock_app/repositories/user_repository.dart';
 import 'package:stock_app/screens/home/home.dart';
 import 'package:stock_app/screens/login/login.dart';
-import 'package:stock_app/screens/splash/splash.dart';
+//import 'package:stock_app/screens/splash/splash.dart';
 //import 'package:stock_app/screens/splash/splash.dart';
 import 'package:splash_screen_package/splash_screen_package.dart';
 import 'dart:io';
-import 'services/firebase_messaging.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  // If you're going to use other Firebase services in the background, such as Firestore,
-  // make sure you call `initializeApp` before using other Firebase services.
-  await Firebase.initializeApp();
   print("Handling a background message: ${message.messageId}");
 }
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -42,7 +40,10 @@ void main() async {
       print('Message also contained a notification: ${message.notification}');
     }
   });
-  //await FirebaseMessagingService().initialize();
+  FirebaseMessaging.instance.getToken().then((value) {
+    String? token = value;
+    print(token ?? "");
+  });
   runApp(const MyApp());
 }
 
