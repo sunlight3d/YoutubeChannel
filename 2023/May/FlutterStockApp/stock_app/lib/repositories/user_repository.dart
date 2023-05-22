@@ -24,7 +24,7 @@ class UserRepository {
   }
 
   static bool isTokenValid(String? jwtToken) {
-    if (jwtToken == null) {
+    if (jwtToken == null || jwtToken.isEmpty) {
       return false;
     }
     Map<String, dynamic> payload = Jwt.parseJwt(jwtToken);

@@ -47,5 +47,24 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+    <key>NSExtension</key>
+    <dict>
+        <key>NSExtensionAttributes</key>
+        <dict>
+            <key>UNNotificationExtensionDefaultContentHidden</key>
+            <string>NO</string>
+            <key>UNNotificationExtensionCategory</key>
+            <string>my_notification_category</string>
+            <key>UNNotificationExtensionInitialContentSizeRatio</key>
+            <real>1</real>
+            <key>UNNotificationExtensionMutableContent</key>
+            <string>YES</string>
+        </dict>
+        <key>NSExtensionMainStoryboard</key>
+        <string>MainInterface</string>
+        <key>NSExtensionPointIdentifier</key>
+        <string>com.apple.usernotifications.service</string>
+    </dict>
+
 </dict>
 </plist>

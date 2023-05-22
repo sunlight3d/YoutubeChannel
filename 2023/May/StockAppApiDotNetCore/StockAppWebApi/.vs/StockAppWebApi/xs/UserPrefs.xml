@@ -1,28 +1,5 @@
 ﻿<Properties StartupConfiguration="{FB6AAE73-C89F-4212-962B-42D3AE4CA811}|https">
-  <MonoDevelop.Ide.Workbench>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="StockAppWebApi" expanded="True">
-            <Node name="StockAppWebApi" expanded="True">
-              <Node name="Attributes" expanded="True" />
-              <Node name="Controllers" expanded="True">
-                <Node name="QuoteController.cs" selected="True" />
-              </Node>
-              <Node name="Extensions" expanded="True" />
-              <Node name="Filters" expanded="True" />
-              <Node name="Models" expanded="True" />
-              <Node name="Repositories" expanded="True" />
-              <Node name="Services" expanded="True" />
-              <Node name="ViewModels" expanded="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
-  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Services/UserService.cs" relfile="StockAppWebApi/Services/UserService.cs" line="46" column="1" />
@@ -45,6 +22,36 @@
       <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Services/OrderService.cs" relfile="StockAppWebApi/Services/OrderService.cs" line="24" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.StockAppWebApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="StockAppWebApi/Models/User.cs">
+    <Files>
+      <File FileName="StockAppWebApi/Controllers/CoveredWarrantController.cs" Line="1" Column="1" />
+      <File FileName="StockAppWebApi/Controllers/StockController.cs" Line="27" Column="34" />
+      <File FileName="StockAppWebApi/Attributes/JwtAuthorizeAttribute.cs" Line="1" Column="1" />
+      <File FileName="StockAppWebApi/Properties/launchSettings.json" Line="30" Column="1" />
+      <File FileName="StockAppWebApi/Controllers/QuoteController.cs" Line="37" Column="55" />
+      <File FileName="StockAppWebApi/Controllers/UserController.cs" Line="37" Column="1" />
+      <File FileName="StockAppWebApi/Services/UserService.cs" Line="25" Column="1" />
+      <File FileName="StockAppWebApi/Models/User.cs" Line="11" Column="31" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="StockAppWebApi" expanded="True">
+            <Node name="StockAppWebApi" expanded="True">
+              <Node name="Attributes" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="User.cs" selected="True" />
+              </Node>
+              <Node name="Properties" expanded="True" />
+              <Node name="Services" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.StockAppWebApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>
