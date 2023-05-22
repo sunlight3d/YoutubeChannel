@@ -1,24 +1,5 @@
 ﻿<Properties StartupConfiguration="{FB6AAE73-C89F-4212-962B-42D3AE4CA811}|https">
-  <MonoDevelop.Ide.ItemProperties.StockAppWebApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="StockAppWebApi/Controllers/QuoteController.cs">
-    <Files>
-      <File FileName="StockAppWebApi/Controllers/OrderController.cs" />
-      <File FileName="StockAppWebApi/Repositories/OrderRepository.cs" />
-      <File FileName="StockAppWebApi/Services/OrderService.cs" />
-      <File FileName="StockAppWebApi/Controllers/UserController.cs" />
-      <File FileName="StockAppWebApi/Services/UserService.cs" />
-      <File FileName="StockAppWebApi/Program.cs" />
-      <File FileName="StockAppWebApi/Repositories/IOrderRepository.cs" />
-      <File FileName="StockAppWebApi/Services/IOrderService.cs" />
-      <File FileName="StockAppWebApi/Models/CoveredWarrant.cs" />
-      <File FileName="StockAppWebApi/Repositories/ICWRepository.cs" />
-      <File FileName="StockAppWebApi/Repositories/CWRepository.cs" />
-      <File FileName="StockAppWebApi/Models/StockAppContext.cs" />
-      <File FileName="StockAppWebApi/Services/ICWService.cs" />
-      <File FileName="StockAppWebApi/Services/CWService.cs" />
-      <File FileName="StockAppWebApi/Controllers/CoveredWarrantController.cs" />
-      <File FileName="StockAppWebApi/Controllers/QuoteController.cs" Line="53" Column="38" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
@@ -40,7 +21,8 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Services/UserService.cs" relfile="StockAppWebApi/Services/UserService.cs" line="46" column="1" />
@@ -55,7 +37,6 @@
       <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Controllers/WebSocketController.cs" relfile="StockAppWebApi/Controllers/WebSocketController.cs" line="27" column="1" />
       <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Controllers/QuoteController.cs" relfile="StockAppWebApi/Controllers/QuoteController.cs" line="30" column="1" />
       <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Controllers/QuoteController.cs" relfile="StockAppWebApi/Controllers/QuoteController.cs" line="28" column="1" />
-      <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Controllers/QuoteController.cs" relfile="StockAppWebApi/Controllers/QuoteController.cs" line="52" column="1" />
       <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Repositories/QuoteRepository.cs" relfile="StockAppWebApi/Repositories/QuoteRepository.cs" line="17" column="1" />
       <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Repositories/QuoteRepository.cs" relfile="StockAppWebApi/Repositories/QuoteRepository.cs" line="34" column="1" />
       <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Repositories/OrderRepository.cs" relfile="StockAppWebApi/Repositories/OrderRepository.cs" line="28" column="1" />
@@ -64,6 +45,6 @@
       <Breakpoint file="/Users/nguyenduchoang/Documents/code/YoutubeChannel/2023/May/StockAppApiDotNetCore/StockAppWebApi/StockAppWebApi/Services/OrderService.cs" relfile="StockAppWebApi/Services/OrderService.cs" line="24" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.StockAppWebApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

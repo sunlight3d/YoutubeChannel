@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stock_app/repositories/user_repository.dart';
 import 'package:stock_app/screens/home/home.dart';
 import 'package:stock_app/screens/login/login.dart';
 import 'package:stock_app/screens/splash/splash.dart';
@@ -23,9 +24,10 @@ void main() async {
 
 Future<void> checkLoginStatus(BuildContext context) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+  //bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+  bool isTokenExpired = UserRepository.isTokenValid(prefs.getString('token') ?? "");
   await Future.delayed(const Duration(seconds: 1));
-  if (isLoggedIn) {
+  if (isTokenExpired) {
     // Đã đăng nhập, chuyển sang màn hình HomeScreen
     if (context.mounted) {
       Navigator.of(context).pushReplacement(

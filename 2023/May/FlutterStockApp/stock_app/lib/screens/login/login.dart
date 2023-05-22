@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stock_app/repositories/user_repository.dart';
 import 'package:stock_app/screens/commons/utilities.dart';
 import 'package:stock_app/screens/home/home.dart';
 import 'package:stock_app/validators/EmailValidator.dart';
@@ -20,7 +21,20 @@ class _LoginScreenState extends State<LoginScreen> {
     if(_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setBool('isLoggedIn', true);
+
+      String email = _emailController.text;
+      String password = _passwordController.text;
+      try {
+        final token = await UserRepository.login(email, password);
+        if (token != null) {
+          await prefs.setString('token', token);
+          await prefs.setBool('isLoggedIn', true);
+        } else {
+          print('Failed to login');
+        }
+      } catch (e) {
+        print('Error: $e');
+      }
       //alert(context, 'Login successfully', AlertType.info);
       if(context.mounted) {
         Navigator.of(context).pushReplacement(
