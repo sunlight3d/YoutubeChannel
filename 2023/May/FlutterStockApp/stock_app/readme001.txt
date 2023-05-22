@@ -19,9 +19,13 @@ Thêm plugins:
 flutter pub add firebase_analytics
 flutter pub add firebase_messaging
 flutter pub add firebase_database
+flutter run
 
 Theo hướng dẫn
 https://firebase.flutter.dev/docs/messaging/overview
+
+Xem them:
+https://pub.dev/packages/firebase_messaging/example
 
 Vào FCM Dashboard(Engage -> messaging):
 https://console.firebase.google.com/project/stockapp-b0883/messaging/onboarding
