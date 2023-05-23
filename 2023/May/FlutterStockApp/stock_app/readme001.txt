@@ -36,13 +36,13 @@ Tuỳ chỉnh cho ios:
 Có thể tạo lại thư mục ios(nếu build bằng Xcode bị lỗi):
 Xoá thư mục ios:
 rm -rf ios
-flutter create -i swift .
+flutter create --ios-language swift .
 flutter devices
 flutter run -d d7865a14accdaca9abf76a68a73169a04dabeb20
 
 Tuỳ chỉnh cho ios:
 https://firebase.flutter.dev/docs/messaging/apple-integration
-Key ID: 7ZZCV3PVGV
+Key ID: 5HU22Y2HT7
 Team ID: XX74TTBC92
 
 File P8 là một loại tệp chứa khóa riêng tư dạng PEM được sử dụng bởi Apple 

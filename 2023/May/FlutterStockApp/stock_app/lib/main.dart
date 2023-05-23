@@ -33,9 +33,9 @@ void main() async {
   );
   print('User granted permission: ${settings.authorizationStatus}');
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  LocalNotification.initialize();
+  // LocalNotification.initialize();
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    //LocalNotification.showNotification(message);
+    // LocalNotification.showNotification(message);
     print('Got a message whilst in the foreground!');
     print('Message data: ${message.data}');
 
@@ -46,8 +46,8 @@ void main() async {
   FirebaseMessaging.instance.getToken().then((value) {
     String? token = value;
     print(token ?? "");
-    //ios: eeXAPefSTUwyrI9rlyO6gC:APA91bHIC25hXTa7o6CY9tn0IvNcjVrXJifIAUTyjjnu38AE6QSpepV2Vv54hloA_aJvdyj6XsIGaz5TtSFIvugV6HVnodibSrhl5pSEo1E0mCiLnwZ-yzjtmNDGKrsnhUi0NbjqeCld
-
+    //ios: eqi5-7nBsE9nrf2YOZ1wYo:APA91bGYS1R3BQMLp007_b5f6sXMg_iZeRpZ1_pdl3KbcFTUp8St9epyT2XOt72ED3Ku0liYMApPenZxNP65pzcYKPFEzdMyf5ynJ-9q1wZn0zwDVj5HaDxIG1ga4DjwCL0hCAunz5sk
+    //android:
   });
   runApp(const MyApp());
 }
