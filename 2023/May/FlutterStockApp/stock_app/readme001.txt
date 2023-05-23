@@ -27,6 +27,18 @@ https://firebase.flutter.dev/docs/messaging/overview
 Xem them:
 https://pub.dev/packages/firebase_messaging/example
 
+Chạy app, lấy FCM token
 Vào FCM Dashboard(Engage -> messaging):
 https://console.firebase.google.com/project/stockapp-b0883/messaging/onboarding
+Gửi thử FCM, dùng FCM token ở trên
+
+Tuỳ chỉnh cho ios:
+Xcode, Targets: Runner, Capability, tìm kiếm "Push Notification"
+Xcode, Targets: Runner, Capability, Tìm kiếm "Background Modes"
+Checkbox vào Background fetch, Remote notifications
+https://firebase.flutter.dev/docs/messaging/apple-integration
+
+
+
+
 
