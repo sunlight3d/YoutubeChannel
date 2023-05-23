@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stock_app/firebase_options.dart';
+import 'package:stock_app/notification/local_notification.dart';
 import 'package:stock_app/repositories/user_repository.dart';
 import 'package:stock_app/screens/home/home.dart';
 import 'package:stock_app/screens/login/login.dart';
@@ -32,7 +33,9 @@ void main() async {
   );
   print('User granted permission: ${settings.authorizationStatus}');
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  LocalNotification.initialize();
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    LocalNotification.showNotification(message);
     print('Got a message whilst in the foreground!');
     print('Message data: ${message.data}');
 
