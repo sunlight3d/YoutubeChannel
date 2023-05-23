@@ -7,10 +7,7 @@ import 'package:stock_app/notification/local_notification.dart';
 import 'package:stock_app/repositories/user_repository.dart';
 import 'package:stock_app/screens/home/home.dart';
 import 'package:stock_app/screens/login/login.dart';
-//import 'package:stock_app/screens/splash/splash.dart';
-//import 'package:stock_app/screens/splash/splash.dart';
 import 'package:splash_screen_package/splash_screen_package.dart';
-import 'dart:io';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print("Handling a background message: ${message.messageId}");
@@ -33,9 +30,9 @@ void main() async {
   );
   print('User granted permission: ${settings.authorizationStatus}');
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  // LocalNotification.initialize();
+  LocalNotification.initialize();
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    // LocalNotification.showNotification(message);
+    LocalNotification.showNotification(message);
     print('Got a message whilst in the foreground!');
     print('Message data: ${message.data}');
 
