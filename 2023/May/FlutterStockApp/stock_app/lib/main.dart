@@ -35,7 +35,7 @@ void main() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   LocalNotification.initialize();
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    LocalNotification.showNotification(message);
+    //LocalNotification.showNotification(message);
     print('Got a message whilst in the foreground!');
     print('Message data: ${message.data}');
 
@@ -46,6 +46,8 @@ void main() async {
   FirebaseMessaging.instance.getToken().then((value) {
     String? token = value;
     print(token ?? "");
+    //ios: eeXAPefSTUwyrI9rlyO6gC:APA91bHIC25hXTa7o6CY9tn0IvNcjVrXJifIAUTyjjnu38AE6QSpepV2Vv54hloA_aJvdyj6XsIGaz5TtSFIvugV6HVnodibSrhl5pSEo1E0mCiLnwZ-yzjtmNDGKrsnhUi0NbjqeCld
+
   });
   runApp(const MyApp());
 }
