@@ -15,7 +15,9 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
+    //auto-generate
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FirebaseMessaging messaging = FirebaseMessaging.instance;
@@ -40,11 +42,13 @@ void main() async {
       print('Message also contained a notification: ${message.notification}');
     }
   });
+  //lấy device's token để test FCM, với ios phải có real device
   FirebaseMessaging.instance.getToken().then((value) {
     String? token = value;
     print(token ?? "");
     //ios: eqi5-7nBsE9nrf2YOZ1wYo:APA91bGYS1R3BQMLp007_b5f6sXMg_iZeRpZ1_pdl3KbcFTUp8St9epyT2XOt72ED3Ku0liYMApPenZxNP65pzcYKPFEzdMyf5ynJ-9q1wZn0zwDVj5HaDxIG1ga4DjwCL0hCAunz5sk
-    //android:
+    //ios: dBVLTV59Y0fxrlXFVrwFLV:APA91bFgJhwN1iqjqz48dOplS7ETZPrfE0Bh4MoOwX2g5GRSmFJa2APVyPdY__Nne8-DYt0RkJaLhc-M4ktqxg2mu04pTym4pJAvQOBMzRHMuV7XhDGnE2cYm_pJl3-nHFyS7HMRSnJl
+    //android: dR-iR1TITqe-EHbwyf6Z0a:APA91bFOKkMhBSUJFllaFX5ujlWedx2uZKupM1zRosbth9k7s_jk4yLfJqnvrXjqN9E8Y5KX_kV6bllYu4gIugRbH0RZbc6NIoo53VpAAhd0iTUAZZ5iu17tb2wHs4M3c2L1Wag3XkPG
   });
   runApp(const MyApp());
 }

@@ -8,6 +8,7 @@ https://firebase.google.com/docs/cli#mac-linux-auto-script
 
 Làm theo hướng dẫn:
 https://firebase.google.com/docs/flutter/setup?platform=ios#available-plugins
+Trước khi Firebase Login, Google "Firebase Console", tạo Project Firebase trên web
 
 firebase login
 dart pub global activate flutterfire_cli

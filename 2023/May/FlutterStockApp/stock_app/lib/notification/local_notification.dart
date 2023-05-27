@@ -63,8 +63,8 @@ class LocalNotification {
     );
     final InitializationSettings initialSettings = InitializationSettings(
       android: AndroidInitializationSettings(
-        //'@mipmap/ic_launcher',
-        'app_icon',
+        '@mipmap/ic_launcher',
+        //'app_icon',
       ),
       iOS: initializationSettingsDarwin,
     );
