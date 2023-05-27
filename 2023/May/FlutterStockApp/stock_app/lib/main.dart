@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stock_app/firebase_options.dart';
 import 'package:stock_app/notification/local_notification.dart';
+import 'package:stock_app/repositories/firebase_respository.dart';
 import 'package:stock_app/repositories/user_repository.dart';
+import 'package:stock_app/screens/chart/chart.dart';
 import 'package:stock_app/screens/home/home.dart';
 import 'package:stock_app/screens/login/login.dart';
 import 'package:splash_screen_package/splash_screen_package.dart';
@@ -50,6 +52,12 @@ void main() async {
     //ios: dBVLTV59Y0fxrlXFVrwFLV:APA91bFgJhwN1iqjqz48dOplS7ETZPrfE0Bh4MoOwX2g5GRSmFJa2APVyPdY__Nne8-DYt0RkJaLhc-M4ktqxg2mu04pTym4pJAvQOBMzRHMuV7XhDGnE2cYm_pJl3-nHFyS7HMRSnJl
     //android: dR-iR1TITqe-EHbwyf6Z0a:APA91bFOKkMhBSUJFllaFX5ujlWedx2uZKupM1zRosbth9k7s_jk4yLfJqnvrXjqN9E8Y5KX_kV6bllYu4gIugRbH0RZbc6NIoo53VpAAhd0iTUAZZ5iu17tb2wHs4M3c2L1Wag3XkPG
   });
+  /*
+  FirebaseRepository.createRecord();
+  FirebaseRepository.listen((responseData){
+    print("haha");
+  });
+  */
   runApp(const MyApp());
 }
 
@@ -77,16 +85,17 @@ Future<void> checkLoginStatus(BuildContext context) async {
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home:SplashScreen(
-        title: 'Splassssss',
-        checkLoginStatus: checkLoginStatus,
-      ),
+      home: Chart()
+      // home:SplashScreen(
+      //   title: 'Splassssss',
+      //   checkLoginStatus: checkLoginStatus,
+      // ),
+
       //home: LoginScreen(),
       //home: HomeScreen(),
     );
@@ -115,3 +124,8 @@ Viết phần inject repository vào
 Hướng dẫn cách gọi api từ App android đến localhost
 * */
 
+/*
+Firebase DB:
+https://stockapp-b0883-default-rtdb.asia-southeast1.firebasedatabase.app/
+
+* */
