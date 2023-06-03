@@ -11,6 +11,9 @@ import 'package:stock_app/screens/home/home.dart';
 import 'package:stock_app/screens/login/login.dart';
 import 'package:splash_screen_package/splash_screen_package.dart';
 
+import 'screens/biometrics/biometric_login.dart';
+import 'screens/webview/webview_screen.dart';
+
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print("Handling a background message: ${message.messageId}");
 }
@@ -90,7 +93,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: Chart()
+      //home: BiometricLoginScreen()
+      home: WebViewScreen()
+      //home: Chart()
       // home:SplashScreen(
       //   title: 'Splassssss',
       //   checkLoginStatus: checkLoginStatus,

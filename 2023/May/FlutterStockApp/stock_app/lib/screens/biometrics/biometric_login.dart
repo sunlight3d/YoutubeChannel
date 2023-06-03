@@ -11,7 +11,13 @@ class _BiometricLoginScreenState extends State<BiometricLoginScreen> {
 
   Future<void> authenticateWithBiometrics() async {
     bool authenticated = false;
-
+    final bool canAuthenticateWithBiometrics = await _localAuthentication.canCheckBiometrics;
+    final bool canAuthenticate =
+        canAuthenticateWithBiometrics || await _localAuthentication.isDeviceSupported();
+    if(!canAuthenticate) {
+      print('Your device does not support');
+      return;
+    }
     try {
       authenticated = await _localAuthentication.authenticate(
         localizedReason: 'Quét vân tay để đăng nhập',
@@ -36,6 +42,15 @@ class _BiometricLoginScreenState extends State<BiometricLoginScreen> {
         title: Text('Đăng nhập vân tay'),
       ),
       body: Center(
+        child: InkWell(
+          child: Container(
+            child: Text('Đăng nhập bằng vân tay'),
+            padding: EdgeInsets.all(10),
+          ),
+          onTap: () {
+            authenticateWithBiometrics();
+          },
+        )
         // child: RaisedButton(
         //   onPressed: () {
         //     authenticateWithBiometrics();

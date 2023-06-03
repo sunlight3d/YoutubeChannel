@@ -54,6 +54,7 @@ dependencies:
   cloud_firestore: ^4.7.1
   syncfusion_flutter_charts: ^21.2.6
   local_auth: ^2.1.6
+  webview_flutter: ^4.2.1
 
 
 dev_dependencies:
