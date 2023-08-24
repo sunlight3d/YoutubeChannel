@@ -5,6 +5,8 @@
 *.aab
 **/db_data/
 # Files for the ART/Dalvik VM
+sql_server_2022_data
+sql_server_2017_data
 *.dex
 
 # Java class files

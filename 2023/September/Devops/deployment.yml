@@ -1,0 +1,84 @@
+version: '3.9'
+
+services:
+  sqlserver2022:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver2022
+    environment:
+      SA_PASSWORD: Abc123456789@
+      ACCEPT_EULA: Y
+    ports:
+      - "1440:1433"
+    networks:
+      - mynetwork
+    volumes:
+      - ./sql_server_2022_data:/var/opt/mssql/data
+    healthcheck:
+      test: ["CMD", "sqlcmd", "-U", "sa", "-P", "Abc123456789@", "-Q", "SELECT 1"]
+      interval: 10s  # Kiểm tra sức khỏe mỗi 10 giây
+      timeout: 5s    # Timeout sau 5 giây
+      retries: 3     # Số lần thử lại
+
+  aspnetcoreapi:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Đường dẫn tới tệp Dockerfile
+    #image: mcr.microsoft.com/dotnet/aspnet:7.0
+    container_name: aspnetcoreapi
+    ports:
+      - "5005:5000"
+    volumes:
+      - .:/app
+    depends_on:
+      - sqlserver2022
+      - sqlserver2017
+    networks:
+      - mynetwork
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  sqlserver2017:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    container_name: sqlserver2017
+    environment:
+      SA_PASSWORD: Abc123456789@
+      ACCEPT_EULA: Y
+    ports:
+        #host's port:container's port
+      - "1441:1433"  # Map host port 1434 to container port 1433
+    networks:
+      - mynetwork
+    volumes:
+      - ./sql_server_2017_data:/var/opt/mssql/data
+
+    healthcheck:
+      test: ["CMD", "sqlcmd", "-U", "sa", "-P", "Abc123456789@", "-Q", "SELECT 1"]
+      interval: 10s  # Kiểm tra sức khỏe mỗi 10 giây
+      timeout: 5s    # Timeout sau 5 giây
+      retries: 3     # Số lần thử lại
+
+networks:
+  mynetwork:
+    name: mynetwork
+
+#-d = detach = background
+#docker-compose -f ./deployment.yml up -d
+#docker-compose -f ./deployment.yml down
+#docker-compose ps
+#docker-compose logs service_name
+
+
+
+
+
+
+
+
+
+
+
+
+
