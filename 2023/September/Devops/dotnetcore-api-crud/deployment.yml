@@ -20,13 +20,13 @@ services:
       retries: 3     # Số lần thử lại
 
   aspnetcoreapi:
-    build:
-      context: .
-      dockerfile: Dockerfile  # Đường dẫn tới tệp Dockerfile
-    #image: mcr.microsoft.com/dotnet/aspnet:7.0
-    container_name: aspnetcoreapi
+    container_name: aspnetcoreapi    
+    image: docker.io/sunlight4d/dotnetcoreapi:1.0
+    build: .           
     ports:
-      - "5005:5000"
+      - "5005:80"
+      - "5225:5225"
+      - "7087:7087"
     volumes:
       - .:/app
     depends_on:

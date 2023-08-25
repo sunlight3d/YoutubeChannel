@@ -2,16 +2,16 @@
 
 #nullable disable
 
-namespace testapp.Migrations
+namespace dotnetcore_api_crud.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateTable : Migration
+    public partial class CreateTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "tblProduct",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -23,7 +23,7 @@ namespace testapp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tblProduct", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                 });
         }
 
@@ -31,7 +31,7 @@ namespace testapp.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "tblProduct");
+                name: "Products");
         }
     }
 }

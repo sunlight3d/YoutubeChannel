@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Bogus;
 
-namespace testapp.Models
+namespace dotnetcore_api_crud.Models
 {
     public class DataContext:DbContext
     {

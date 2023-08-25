@@ -1,13 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-using testapp.Models;
+using System.ComponentModel.DataAnnotations;
+using dotnetcore_api_crud.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.AspNetCore.Http.HttpResults;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace testapp.Models
+namespace dotnetcore_api_crud.Models
 {
-    [Table("tblProduct")]
+    [Table("Products")]
     public class Product
     {
         [Key]

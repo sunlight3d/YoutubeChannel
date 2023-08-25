@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using testapp.Models;
+using dotnetcore_api_crud.Models;
 
-namespace testapp.Controllers
+namespace dotnetcore_api_crud.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

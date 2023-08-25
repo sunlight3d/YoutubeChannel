@@ -2,17 +2,20 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using testapp.Models;
+using dotnetcore_api_crud.Models;
 
 #nullable disable
 
-namespace testapp.Migrations
+namespace dotnetcore_api_crud.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230825062327_CreateTables")]
+    partial class CreateTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +24,7 @@ namespace testapp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("testapp.Models.Product", b =>
+            modelBuilder.Entity("dotnetcore_api_crud.Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +48,7 @@ namespace testapp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tblProduct");
+                    b.ToTable("Products");
                 });
 #pragma warning restore 612, 618
         }

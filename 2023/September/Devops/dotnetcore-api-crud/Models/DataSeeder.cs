@@ -1,10 +1,6 @@
-﻿using Bogus;
-using testapp.Models;
-
-using System;
-using System.Linq;
-
-namespace testapp.Models
+using Bogus;
+using dotnetcore_api_crud.Models;
+namespace dotnetcore_api_crud.Models
 {
     public class DataSeeder
     {

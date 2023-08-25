@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{E811F209-61ED-4406-BC7F-67609516E64A}|https">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.testapp PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="testapp/appsettings.json">
+    <Files>
+      <File FileName="testapp/CustomHealthCheck.cs" Line="1" Column="1" />
+      <File FileName="testapp/Program.cs" Line="19" Column="94" />
+      <File FileName="testapp/appsettings.json" Line="14" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="testapp" expanded="True" selected="True">
+            <Node name="testapp" expanded="True">
+              <Node name="Migrations" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>
