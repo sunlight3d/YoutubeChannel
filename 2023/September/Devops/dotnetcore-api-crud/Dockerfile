@@ -18,4 +18,5 @@ WORKDIR /app
 
 COPY --from=build /app/out ./
 
+EXPOSE 5000
 ENTRYPOINT ["dotnet", "dotnetcore-api-crud.dll"]

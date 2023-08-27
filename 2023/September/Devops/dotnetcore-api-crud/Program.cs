@@ -39,4 +39,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+var port = builder.Configuration["PORT"] ?? "5000";
+
+app.MapGet("/", () => "Hello World");
+
+app.Urls.Add($"http://0.0.0.0:{port}");
+
 app.Run();
