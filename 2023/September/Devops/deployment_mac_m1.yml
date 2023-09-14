@@ -1,0 +1,56 @@
+version: '3.9'
+
+services:
+  mysql8-container:
+    #image: mysql:8.1.0
+    image: mysql/mysql-server:8.0.32-1.2.11-server
+    container_name: mysql8-container
+    restart: always
+    ports:
+      - "3307:3306"
+    networks:
+      - mydatabases
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: Abc123456789@
+      MYSQL_ROOT_HOST: '%'    
+
+  phpmyadmin8-container:
+    #image: phpmyadmin/phpmyadmin
+    image: arm64v8/phpmyadmin
+    container_name: phpmyadmin8-container
+    restart: always
+    ports:
+      - "8088:80"
+    environment:
+      PMA_HOST: mysql8-container #phpMyAdmin Host
+    networks:
+      - mydatabases    
+
+  sqlserver2022-container:
+    #image: mcr.microsoft.com/mssql/server:2022-latest
+    image: mcr.microsoft.com/azure-sql-edge    
+    container_name: sqlserver2022-container
+    restart: always
+    ports:
+      - "1434:1433"
+    environment:
+      SA_PASSWORD: Abc123456789@
+      ACCEPT_EULA: Y
+    networks:
+      - mydatabases
+    volumes:
+      - ./sqlserver2022-data:/var/opt/mssql/data
+
+networks:
+  mydatabases:
+
+volumes:
+  # mysql8-data:
+  sqlserver2022-data:  
+
+  #docker-compose -f ./deployment_mac_m1.yml up -d
+  #docker-compose -f ./deployment_mac_m1.yml down
+  #docker-compose ps
+  #docker network rm mydatabases_mydatabases
+
