@@ -7,6 +7,8 @@
 # Files for the ART/Dalvik VM
 sql_server_2022_data
 sql_server_2017_data
+sqlserver2022-data
+mysql8-data
 *.dex
 
 # Java class files
